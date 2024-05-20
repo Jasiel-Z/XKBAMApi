@@ -10,16 +10,35 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      
     }
   }
   cuenta.init({
-    contrasena: DataTypes.STRING,
-    correo: DataTypes.STRING,
-    rolid: DataTypes.INTEGER,
-    usuarioid: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    contrasena: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    correo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    idrol: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }, 
+    idusuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'cuenta',
   });
   return cuenta;

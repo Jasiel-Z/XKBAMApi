@@ -14,11 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   tarjetabancaria.init({
-    titular: DataTypes.STRING,
-    fechaExpiracion: DataTypes.DATE,
-    idusuario: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    titular: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    fechaExpiracion: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    idusuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'tarjetabancaria',
   });
   return tarjetabancaria;

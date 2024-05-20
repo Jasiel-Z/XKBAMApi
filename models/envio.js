@@ -14,12 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   envio.init({
-    fechacreacion: DataTypes.DATE,
-    fechaentrega: DataTypes.DATE,
-    estado: DataTypes.STRING,
-    idcompra: DataTypes.INTEGER
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    fechacreacion: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    fechaentrega: {
+     type: DataTypes.DATE,
+     allowNull: false
+    },
+    estado: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    idcompra: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'envio',
   });
   return envio;

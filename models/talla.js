@@ -10,13 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      talla.hasMany(models.articulocarrito, {foreignKey: 'idtalla'})
+      talla.hasMany(models.articulocarrito, {foreignKey: 'idtalla'})
     }
+    
   }
   talla.init({
-    nombre: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'talla',
   });
   return talla;

@@ -14,12 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   compra.init({
-    estado: DataTypes.STRING,
-    fechacompra: DataTypes.DATE,
-    montofinal: DataTypes.DOUBLE,
-    idusuario: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    estado: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    fechacompra: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    montofinal: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
+    },
+    idusuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'compra',
   });
   return compra;

@@ -1,0 +1,14 @@
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+  "nombreusuario": "jdoqqqqqq",
+  "nombre": "",
+  "apellidopaterno": "Doe",
+  "apellidomaterno": "Martinez",
+  "genero": 1,
+  "contrasena": "password123",
+  "correo": "jdoe@example.com",
+  "idrol": 1
+}
+###

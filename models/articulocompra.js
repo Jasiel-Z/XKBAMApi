@@ -14,15 +14,43 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   articulocompra.init({
-    cantidadarticulo: DataTypes.INTEGER,
-    preciounitario: DataTypes.DOUBLE,
-    preciofinal: DataTypes.DOUBLE,
-    idproducto: DataTypes.STRING,
-    idcompra: DataTypes.INTEGER,
-    idtalla: DataTypes.INTEGER,
-    idcolor: DataTypes.INTEGER
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    cantidadarticulo: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    preciounitario: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
+    },  
+    preciofinal: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
+    },
+    idarticulo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    idcompra: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }, 
+    idtalla: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    idcolor: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'articulocompra',
   });
   return articulocompra;

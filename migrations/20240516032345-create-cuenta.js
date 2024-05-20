@@ -10,16 +10,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       contrasena: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       correo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      rolid: {
-        type: Sequelize.INTEGER
+      idrol: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'rol',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'NO ACTION'
       },
-      usuarioid: {
-        type: Sequelize.STRING
+      idusuario: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {
+          model: 'usuario',
+          key: 'nombreusuario'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

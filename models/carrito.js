@@ -14,9 +14,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   carrito.init({
-    idusuario: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    idusuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'carrito',
   });
   return carrito;

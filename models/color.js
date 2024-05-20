@@ -10,13 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      color.hasMany(models.articulocarrito, {foreignKey: 'idcolor'})
+      color.hasMany(models.articulocompra, {foreignKey: 'idcolor'})
+
     }
   }
   color.init({
-    nombre: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'color',
   });
   return color;

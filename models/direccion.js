@@ -14,14 +14,39 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   direccion.init({
-    estado: DataTypes.STRING,
-    municipio: DataTypes.STRING,
-    codigopostal: DataTypes.STRING,
-    calle: DataTypes.STRING,
-    numeroexterno: DataTypes.INTEGER,
-    idusuario: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    estado: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    municipio: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    codigopostal: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }, 
+    calle: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    numeroexterno: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    idusuario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'direccion',
   });
   return direccion;

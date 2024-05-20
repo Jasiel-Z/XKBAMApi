@@ -14,10 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   multimedia.init({
-    nombre: DataTypes.STRING,
-    idproducto: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    contenido: {
+      type: DataTypes.BLOB,
+      allowNull: false
+    },
+    idarticulo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'multimedia',
   });
   return multimedia;

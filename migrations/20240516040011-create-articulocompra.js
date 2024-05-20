@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('articulocompras', {
+    await queryInterface.createTable('articulocompra', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,29 +10,66 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       cantidadarticulo: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,        
+        allowNull: false
       },
       preciounitario: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
+        allowNull: false
+
       },
       preciofinal: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
+        allowNull: false
+
       },
-      idproducto: {
-        type: Sequelize.STRING
+      idarticulo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'articulo',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+
       },
       idcompra: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'compra',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+
       },
       idtalla: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'talla',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+
       },
       idcolor: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'color',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE  
       },
       updatedAt: {
         allowNull: false,
@@ -41,6 +78,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('articulocompras');
+    await queryInterface.dropTable('articulocompra');
   }
 };

@@ -10,13 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       titular: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       fechaExpiracion: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false   
       },
       idusuario: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'usuario',
+          key: 'nombreusuario'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

@@ -14,12 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   opinion.init({
-    idproducto: DataTypes.STRING,
-    comentario: DataTypes.STRING,
-    calificacion: DataTypes.INTEGER,
-    idusuario: DataTypes.INTEGER
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    idproducto: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    comentario: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    calificacion: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    idusuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     sequelize,
+    freezeTableName: true,
     modelName: 'opinion',
   });
   return opinion;
