@@ -17,10 +17,9 @@ const validateUser = [
         .trim()
         .escape(),
     check('genero')
-        .not().isEmpty()
+        .isInt()
         .withMessage('Campos faltantes')
-        .trim()
-        .escape(),
+        .toInt(),
     check('correo')
         .isEmail()
         .withMessage('El formato del correo no es válida')
@@ -33,7 +32,12 @@ const validateUser = [
     check('idrol')
         .isInt()
         .withMessage('Rol no identificado')
-        .toInt(),
+        .custom(async (idrol) => {
+            const role = await role.findByPk(idrol);
+            if(!role) 
+                throw new Error('Rol no identificado');
+            
+        }),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

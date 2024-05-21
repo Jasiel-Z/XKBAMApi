@@ -1,25 +1,22 @@
 const {usuario, cuenta, rol, Sequelize, sequelize} = require('../models')
 const bcrypt = require('bcrypt')
+const { error } = require('console')
 const crypto = require('crypto')
 const { validationResult } = require('express-validator')
 
 
 let self = {}
 
-self.createUserAndAccount = async function (req, res){
+self.create = async function (req, res){
     const t = await sequelize.transaction();
     try{
         //usar validator
         const errors = validationResult(req);
-        if(errors.isEmpty())
+        if(!errors.isEmpty())
           return res.status(400).json({ errors: errors.array() })
 
-        const { nombreusuario, nombre, apellidopaterno, apellidomaterno, genero, contrasena, correo, idrol} = req.body
-        console.log(nombreusuario);
-        console.log(nombre);
-        console.log(apellidopaterno);
-        console.log(apellidomaterno);
-        console.log(genero)
+        const { nombreusuario, nombre, apellidopaterno, apellidomaterno, 
+            genero, contrasena, correo, idrol} = req.body
 
         const newuser = await usuario.create({
             nombreusuario: nombreusuario,
@@ -45,6 +42,15 @@ self.createUserAndAccount = async function (req, res){
         await t.rollback();
         return res.status(500).json({ error: error.message});
     }
+}
+
+self.update = async function (req, res){
+    try{
+        
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+
 }
 
 module.exports = self;

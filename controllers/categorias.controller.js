@@ -3,7 +3,15 @@ let self = {}
 
 //GET api/categorias
 self.getAll = async function (req, res){
-    
+    try{
+        const  categorias = await categoria.findAll({ attributes: [
+            ['id', 'categoriaId'],
+            'nombre'
+        ]});    
+        return res.status(200).json(categorias);
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
 }
 
 //GET api/categorias/id
