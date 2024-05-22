@@ -2,14 +2,26 @@
 Content-Type: application/json
 
 {
-  "nombreusuario": "jdoqqqqqq",
-  "nombre": "",
-  "apellidopaterno": "Doe",
-  "apellidomaterno": "Martinez",
+  "nombreusuario": "jasielqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+  "nombre": "Q",
+  "apellidopaterno": "Zavaleta",
+  "apellidomaterno": "García",
   "genero": 1,
-  "contrasena": "password123",
-  "correo": "jdoe@example.com",
+  "contrasena": "patito2003",
+  "correo": "jasielz@gmail.com",
   "idrol": 1
 }
 ###
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
 
+{
+  "nombreusuario": "raulqqqqqqqqqqqqqqqqqqqqqq",
+  "nombre": "",
+  "apellidopaterno": "Zavaleta",
+  "apellidomaterno": "García",
+  "genero": 1,
+  "contrasena": "iker2007",
+  "correo": "ikerz@gmail.com",
+  "idrol": 1
+}

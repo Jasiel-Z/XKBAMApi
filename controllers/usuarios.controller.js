@@ -11,9 +11,9 @@ self.create = async function (req, res){
     const t = await sequelize.transaction();
     try{
         //usar validator
-        const errors = validationResult(req);
-        if(!errors.isEmpty())
-          return res.status(400).json({ errors: errors.array() })
+        //const errors = validationResult(req);
+        //if(!errors.isEmpty())
+        //return res.status(400).json({ errors: errors.array() })
 
         const { nombreusuario, nombre, apellidopaterno, apellidomaterno, 
             genero, contrasena, correo, idrol} = req.body
