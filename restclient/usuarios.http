@@ -25,3 +25,38 @@ Content-Type: application/json
   "correo": "ikerz@gmail.com",
   "idrol": 1
 }
+###
+
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+  
+  "nombre": "",
+  "apellidopaterno": "Zavaleta",
+  "apellidomaterno": "García",
+  "genero": 1,
+  "contrasena": "iker2007",
+  "correo": "ikerz@gmail.com",
+  "idrol": 1
+}
+
+###
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "usuario": {      
+        "nombreusuario": "ejemplousuario2",
+        "nombre": "Raul",
+        "apellidopaterno": "Pérez",
+        "apellidomaterno": "González",
+        "genero": 1,
+        "edad": 23
+    },
+    "cuenta": {
+        "correo": "juanperez@example.com",
+        "contrasena": "contrasena321",
+        "idrol": 1
+    }
+}
