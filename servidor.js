@@ -1,10 +1,13 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
-//const fs = require("fs");
-const { Sequelize } = require('sequelize');
-const { multimedia } = require('../models');
+const { Sequelize, Op } = require('sequelize');
+const { multimedia, compra, articulocompra } = require('./models');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
 const PROTO_PATH = "./proto/multimedia.proto"
+const Chart = require('chart.js');
+
 
 dotenv.config()
 
@@ -15,7 +18,8 @@ const multiProto = grpc.loadPackageDefinition(packageDefinition);
 const server = new grpc.Server();
 server.addService(multiProto.MultimediaService.service, {
     getMultimedia: getMultimediaImpl,
-    upploadMultimedia: upploadMultimediaImpl 
+    uploadMultimedia: uploadMultimediaImpl,
+    generateSalesReport: generateSalesReportImpl
 
 });
 
@@ -56,4 +60,146 @@ async function getMultimediaImpl(call) {
         console.error(err);
         call.emit('error', { code: grpc.status.INTERNAL, message: "Error al recuperar las fotos" });
     }
+}
+
+async function generateSalesReportImpl(call, callback) {
+    const { start_date, end_date } = call.request;
+
+    try {
+        const salesData = await fetchSalesData(start_date, end_date);
+        const { salesByDate, productsSold } = processSalesData(salesData);
+        const pdfBuffer = await generatePDF(salesByDate, productsSold);
+        
+        // Enviar el pdf
+        const response = new GeneraterReportResponse();
+        response.setPdfData(pdfBuffer);
+        callback(null, response);
+    } catch (error) {
+        console.error('Error al generar el reporte de compras:', error);
+        callback({ code: grpc.status.INTERNAL, message: "Error al generar el reporte de compras" });
+    }
+}
+
+
+async function fetchSalesData(start_date, end_date) {
+    return await compra.findAll({
+        where: {
+            fechacompra: {
+                [Op.between]: [start_date, end_date]
+            }
+        },
+        include: [
+            {
+                model: articulocompra,
+                as: 'articulos'
+            }
+        ]
+    });
+}
+
+function processSalesData(salesData) {
+    const salesByDate = {};
+    const productsSold = {};
+
+    salesData.forEach(sale => {
+        const saleDate = sale.fechacompra.toDateString();
+        if (!salesByDate[saleDate]) {
+            salesByDate[saleDate] = 0;
+        }
+        salesByDate[saleDate] += sale.montofinal;
+
+        sale.articulos.forEach(item => {
+            const productName = item.nombre;
+            if (!productsSold[productName]) {
+                productsSold[productName] = 0;
+            }
+            productsSold[productName] += item.cantidadarticulo;
+        });
+    });
+
+    return { salesByDate, productsSold };
+}
+
+async function generatePDF(salesByDate, productsSold) {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage();
+
+    let y = page.getHeight() - 50;
+
+    page.drawText('Reporte de Compras', {
+        x: page.getWidth() / 2,
+        y,
+        size: 20,
+        color: rgb(0, 0, 0),
+        textAlign: 'center',
+    });
+
+    y -= 30;
+
+    // Ventas por fecha
+    page.drawText('Ventas por Fecha:', {
+        x: 50,
+        y,
+        size: 16,
+        color: rgb(0, 0, 0),
+    });
+    y -= 20;
+
+    for (const date in salesByDate) {
+        page.drawText(`${date}: $${salesByDate[date]}`, {
+            x: 50,
+            y,
+            size: 12,
+            color: rgb(0, 0, 0),
+        });
+        y -= 20;
+    }
+
+    y -= 10;
+
+    page.drawText('Productos Vendidos:', {
+        x: 50,
+        y,
+        size: 16,
+        color: rgb(0, 0, 0),
+    });
+    y -= 20;
+
+    for (const product in productsSold) {
+        page.drawText(`${product}: ${productsSold[product]} unidades`, {
+            x: 50,
+            y,
+            size: 12,
+            color: rgb(0, 0, 0),
+        });
+        y -= 20;
+    }
+
+    // Gráfica: ventas por fecha
+    const canvas1 = createCanvas(400, 200);
+    generateBarChart(canvas1, salesByDate);
+    const barChart1 = canvas1.toBuffer();
+    page.drawImage(barChart1, {
+        x: 50,
+        y: y - 200,
+        width: 400,
+        height: 200,
+    });
+
+    // Gráfica: productos vendidos
+    const canvas2 = createCanvas(400, 200);
+    generateBarChart(canvas2, productsSold);
+    const barChart2 = canvas2.toBuffer();
+    page.drawImage(barChart2, {
+        x: 50,
+        y: y - 400,
+        width: 400,
+        height: 200
+    });
+
+    const pdfBytes = await pdfDoc.save();
+    const pdfName = `reporte_ventas_${new Date().toISOString()}.pdf`; 
+    const pdfPath = `./reports/${pdfName}`;
+    fs.writeFileSync(pdfPath, pdfBytes);  
+    return pdfBytes;
 }

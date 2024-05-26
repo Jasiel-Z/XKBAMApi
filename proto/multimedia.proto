@@ -1,8 +1,17 @@
 syntax = "proto3";
 
+message GenerateReportRequest {
+    string start_date = 1;
+    string end_date = 2;
+}
+
+message GeneraterReportResponse {
+    bytes pdf_data = 1;
+}
+
 message UploadMultimediaRequest {
     string item_id = 1;
-    string nombre = 2
+    string nombre = 2;
     bytes photo_data = 3;
 }
 
@@ -22,4 +31,6 @@ service MultimediaService {
     rpc uploadMultimedia (UploadMultimediaRequest) returns (UploaMultimediaResponse);
 
     rpc getMultimedia (GetMultimediaRequest) returns (stream GetMultimediaResponse);
+
+    rpc generateSalesReport (GenerateReportRequest) returns (GeneraterReportResponse);
 }
