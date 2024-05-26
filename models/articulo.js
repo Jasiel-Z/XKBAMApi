@@ -12,10 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   articulo.init({
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
     },
     nombre:{
       type: DataTypes.STRING,

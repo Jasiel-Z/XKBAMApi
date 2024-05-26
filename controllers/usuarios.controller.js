@@ -10,7 +10,7 @@ let self = {}
 self.create = async function (req, res){
     const t = await sequelize.transaction();
     try{
-        const errors = validationResult(req);
+        /*const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
                 message: 'Solicitud no válida',
@@ -19,7 +19,10 @@ self.create = async function (req, res){
                     message: err.msg
                 }))
             });
+        
+
         }
+        */
         const { usuario: userData, cuenta: accountData } = req.body;
         const { nombreusuario, nombre, apellidopaterno, apellidomaterno, genero } = userData;
         const { contrasena, correo, idrol } = accountData;

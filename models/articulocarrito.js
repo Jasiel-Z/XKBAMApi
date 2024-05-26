@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     idproducto: {
       type:DataTypes.STRING,
+      allowNull: false
+
     },
     idcarrito: {
       type: DataTypes.INTEGER,

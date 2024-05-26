@@ -1,18 +1,11 @@
-POST  POST http://localhost:3000/api/direcciones
+POST http://localhost:3000/api/direcciones
 Content-Type: application/json
 
 {
-    "usuario": {      
-        "nombreusuario": "ejemplousuario2",
-        "nombre": "Raul",
-        "apellidopaterno": "Pérez",
-        "apellidomaterno": "González",
-        "genero": 1,
-        "edad": 23
-    },
-    "cuenta": {
-        "correo": "juanperez@example.com",
-        "contrasena": "contrasena321",
-        "idrol": 1
-    }
+    "estado": "Veracruz",
+    "municipio": "Xalapa",
+    "codigopostal": "91231",
+    "calle": "16 de Septiembre",
+    "numeroexterno": 22,
+    "idusuario": "ejemplousuario"
 }

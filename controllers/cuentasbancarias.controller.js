@@ -51,7 +51,7 @@ self.delete = async function(req, res){
             return res.status(404).json({message: 'Cuenta bancaria no encontrada'})
 
         useraccount = await cuentabancaria.destroy({where: 
-            {id: useraccount}
+            {id: accountnumber}
         });
 
         if(useraccount === 1)

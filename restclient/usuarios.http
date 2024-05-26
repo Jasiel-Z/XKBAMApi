@@ -47,16 +47,16 @@ Content-Type: application/json
 
 {
     "usuario": {      
-        "nombreusuario": "ejemplousuario2",
-        "nombre": "Raul",
-        "apellidopaterno": "Pérez",
-        "apellidomaterno": "González",
-        "genero": 1,
-        "edad": 23
+        "nombreusuario": "elbicho",
+        "nombre": "Francisco",
+        "apellidopaterno": "Hernández",
+        "apellidomaterno": "Ochoa",
+        "genero": 12
+        
     },
     "cuenta": {
-        "correo": "juanperez@example.com",
-        "contrasena": "contrasena321",
-        "idrol": 1
+        "correo": "francis@gmail.com",
+        "contrasena": "QWERTY123",
+        "idrol": 2
     }
 }

@@ -15,6 +15,6 @@ const combinedSchema = Joi.object({
 
 //POST  api/usuarios
 router.post('/',validateUser, usuarios.create)
-router.use(validationErrorHandler);
+//router.use(validationErrorHandler);
 
 module.exports = router;

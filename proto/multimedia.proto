@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+message UploadMultimediaRequest {
+    string item_id = 1;
+    string nombre = 2
+    bytes photo_data = 3;
+}
+
+message UploaMultimediaResponse {
+    string response = 1;
+}
+
+message GetMultimediaRequest {
+    string item_id = 1;
+}
+
+message GetMultimediaResponse {
+    bytes photo_data = 1;
+}
+
+service MultimediaService {
+    rpc uploadMultimedia (UploadMultimediaRequest) returns (UploaMultimediaResponse);
+
+    rpc getMultimedia (GetMultimediaRequest) returns (stream GetMultimediaResponse);
+}
