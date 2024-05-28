@@ -10,22 +10,12 @@ let self = {}
 self.create = async function (req, res){
     const t = await sequelize.transaction();
     try{
-        /*const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({
-                message: 'Solicitud no válida',
-                errors: errors.array().map(err => ({
-                    field: err.param,
-                    message: err.msg
-                }))
-            });
-        
 
-        }
-        */
         const { usuario: userData, cuenta: accountData } = req.body;
         const { nombreusuario, nombre, apellidopaterno, apellidomaterno, genero } = userData;
         const { contrasena, correo, idrol } = accountData;
+
+        const hashedPassword = await bcrypt.hash(contrasena, 10);
 
         const newUser = await usuario.create({
             nombreusuario: nombreusuario,
@@ -36,7 +26,7 @@ self.create = async function (req, res){
         }, {transaction: t});
 
         const newAccount = await cuenta.create({
-            contrasena: contrasena,
+            contrasena: hashedPassword,
             correo: correo,
             idrol: idrol,
             idusuario: newUser.nombreusuario

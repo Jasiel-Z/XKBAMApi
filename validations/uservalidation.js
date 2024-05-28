@@ -1,12 +1,18 @@
 const {check, validationResult} = require('express-validator');
-const { rol, genero } = require('../models');
+const { rol, genero, cuenta, usuario } = require('../models');
 
 const validateUser = [
     check('usuario.nombreusuario')
         .notEmpty().withMessage('Campo obligatorio')
         .isString().withMessage('Tipo de dato no aceptado')
         .isLength({ min: 6,max: 20 }).withMessage('El usuario debe tener de 6 a 30 caracteres')
-        .trim().escape(),
+        .trim().escape()
+        .custom(async (nombreusuario) => {
+            const user = await usuario.findOne({where: {nombreusuario}});
+            if(user)
+                throw new Error('El nombre de usuario se encuentra en uso');
+        }),
+
     check('usuario.nombre')
         .notEmpty().withMessage('Campo obligatorio')
         .isString().withMessage('Tipo de dato no aceptado')
@@ -28,7 +34,12 @@ const validateUser = [
         .notEmpty().withMessage('Campo obligatorio')
         .isEmail().withMessage('El formato del correo no es válido')
         .isLength({max: 50}).withMessage('El correo no puede contener más de 50 caracteres')
-        .normalizeEmail(),
+        .normalizeEmail()
+        .custom(async (correo) => {
+            const account = await cuenta.findOne({where: {correo}});
+            if(account)
+                throw new Error('El correo se encuentra en uso');
+        }),
 
     check('cuenta.contrasena')
         .notEmpty().withMessage('Campo obligatorio')
