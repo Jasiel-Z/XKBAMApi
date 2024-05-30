@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   cuenta.init({
-    id: {
+    idCuenta: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    idrol: {
+    idRol: {
       type: DataTypes.INTEGER,
       allowNull: false
     }, 
-    idusuario: {
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false
     }

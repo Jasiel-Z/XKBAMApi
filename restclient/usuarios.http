@@ -2,28 +2,42 @@
 Content-Type: application/json
 
 {
-  "nombreusuario": "jasielqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+  "usuario": "CrisCris",
+  "nombre": "Cristopher",
+  "apellidoPaterno": "Vazquez",
+  "apellidoMaterno": "Villa",
+  "genero": 1,
+  "contrasena": "CrisCris89",
+  "correo": "cris990077@hotmail.com",
+  "idRol": 1
+}
+###
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+  "usuario": "jasielqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
   "nombre": "Q",
-  "apellidopaterno": "Zavaleta",
-  "apellidomaterno": "García",
+  "apellidoPaterno": "Zavaleta",
+  "apellidoMaterno": "García",
   "genero": 1,
   "contrasena": "patito2003",
   "correo": "jasielz@gmail.com",
-  "idrol": 1
+  "idRol": 1
 }
 ###
  POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-  "nombreusuario": "raulqqqqqqqqqqqqqqqqqqqqqq",
+  "usuario": "raulqqqqqqqqqqqqqqqqqqqqqq",
   "nombre": "",
-  "apellidopaterno": "Zavaleta",
-  "apellidomaterno": "García",
+  "apellidoPaterno": "Zavaleta",
+  "apellidoMaterno": "García",
   "genero": 1,
   "contrasena": "iker2007",
   "correo": "ikerz@gmail.com",
-  "idrol": 1
+  "idRol": 1
 }
 ###
 
@@ -38,7 +52,7 @@ Content-Type: application/json
   "genero": 1,
   "contrasena": "iker2007",
   "correo": "ikerz@gmail.com",
-  "idrol": 1
+  "idRol": 1
 }
 
 ###
@@ -47,17 +61,17 @@ Content-Type: application/json
 
 {
     "usuario": {      
-        "nombreusuario": "JasielZ",
+        "usuario": "JasielZ",
         "nombre": "Jasiel Emir",
-        "apellidopaterno": "Zavaleta",
-        "apellidomaterno": "García",
+        "apellidoPaterno": "Zavaleta",
+        "apellidoMaterno": "García",
         "genero": 1
         
     },
     "cuenta": {
         "correo": "jasielz@gmail.com",
         "contrasena": "QWERTY123",
-        "idrol": 1
+        "idRol": 1
     }
 }
 

@@ -5,7 +5,7 @@ let self = {}
 self.getAll = async function (req, res){
     try{
         const  categorias = await categoria.findAll({ attributes: [
-            ['id', 'categoriaId'],
+            ['idCategoria', 'idCategoria'],
             'nombre'
         ]});    
         return res.status(200).json(categorias);

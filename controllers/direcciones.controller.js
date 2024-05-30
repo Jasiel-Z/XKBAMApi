@@ -10,14 +10,14 @@ self.create = async function (req,res){
         if(!errors.isEmpty())
             return res.status(400).json({errors: errors.array()});
 
-        const {estado, municipio, codigopostal, calle, numeroexterno, idusuario} = req.body;
+        const {estado, municipio, codigoPostal, calle, numeroExterno, usuario} = req.body;
         const newaddress = await direccion.create({
             estado,
             municipio,
-            codigopostal,
+            codigoPostal,
             calle,
-            numeroexterno,
-            idusuario
+            numeroExterno,
+            usuario
         });
         return res.status(201).json(newaddress);
     }catch(error){
@@ -32,9 +32,9 @@ self.update = async function(req, res){
             return res.status(400).json({errors: errors.array()});
 
         //const userid = req.params.idusuario;
-        const addressid = req.params.id;
+        const addressid = req.params.idDireccion;
         const body = req.body;
-        let useraddress = await direccion.update(body, {where:{id: addressid}});
+        let useraddress = await direccion.update(body, {where:{idDireccion: addressid}});
         
         if(!useraddress)
             return res.status(404).json({message:'Dirección no encontrada'});
@@ -48,9 +48,9 @@ self.update = async function(req, res){
 // Direcciones de usuario
 self.getAll = async function(req, res){
     try{
-        const userid = req.params.idusuario;
+        const userid = req.params.usuario;
         const addresses = await direccion.findAll({
-            where: { idusuario: userid }
+            where: { usuario: userid }
         });
         if(!addresses)
             return res.status(404).json({message: 'No se encontraron direcciones para este usuario'});
@@ -63,13 +63,13 @@ self.getAll = async function(req, res){
 
 self.delete = async function(req, res){
     try{
-        const addressid = req.params.id;
+        const addressid = req.params.idDireccion;
         let useraddress = await direccion.findByPk(addressid);
         if(!useraddress)
             return res.status(404).json({message: 'Dirección no encontrada'});
         
         useraddress = await direccion.destroy({where:
-            {id: addressid}
+            {idDireccion: addressid}
         });
 
         if(useraddress === 1)

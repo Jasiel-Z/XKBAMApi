@@ -13,7 +13,7 @@ self.login = async function(req, res){
         })
     
         let role = await rol.findOne({
-            where: { id: account.idrol},
+            where: { idRol: account.idRol},
         });
 
         console.log('Información de la cuenta:', account);
@@ -25,11 +25,11 @@ self.login = async function(req, res){
         if(!passwordMatch)
             return res.status(401).json({mensaje: 'Usuario o contraseña incorrectos.'});
     
-        token = GeneraToken(account.correo, account.idusuario, role.nombre)
+        token = GeneraToken(account.correo, account.usuario, role.nombre)
 
         return res.status(200).json({
             correo: account.correo,
-            nombre: account.idusuario,
+            nombre: account.usuario,
             rol: role.nombre,
             jwt: token
         })

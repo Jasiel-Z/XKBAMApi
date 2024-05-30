@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('tarjetabancaria', {
-      id: {
+      numeroTarjeta: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -17,12 +17,16 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false   
       },
-      idusuario: {
+      cvv: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      usuario: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'usuario',
-          key: 'nombreusuario'
+          key: 'usuario'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

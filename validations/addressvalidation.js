@@ -14,7 +14,7 @@ const validateAddress = [
         .isLength({ max: 50 }).withMessage('Se ha excedido el máximo de 30 caracteres')
         .trim().escape(),
     
-    check('codigopostal')
+    check('codigoPostal')
         .notEmpty().withMessage('Campos vacíos')
         .isString().withMessage('Tipo de dato no aceptado')
         .isLength({ max: 50 }).withMessage('Se ha excedido el máximo de 8 caracteres')
@@ -26,15 +26,15 @@ const validateAddress = [
         .isLength({ max: 50 }).withMessage('Se ha excedido el máximo de 30 caracteres')
         .trim().escape(),
     
-    check('numeroexterno')
+    check('numeroExterno')
         .notEmpty().withMessage('Campos vacíos')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt(), 
 
-    check('idusuario')
+    check('usuario')
         .isInt().withMessage('Tipo de dato no aceptado')
-        .custom(async (idusuario) => {
-          const user = await usuario.findByPk(idusuario);
+        .custom(async (usuario) => {
+          const user = await usuario.findByPk(usuario);
           if (!user) {
             return Promise.reject('Usuario no encontrado');
           }

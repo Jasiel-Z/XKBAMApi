@@ -3,65 +3,51 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('articulocompra', {
-      id: {
+      idArticuloCompra: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cantidadarticulo: {
+      cantidadArticulo: {
         type: Sequelize.INTEGER,        
         allowNull: false
       },
-      preciounitario: {
+      precioUnitario: {
         type: Sequelize.DOUBLE,
         allowNull: false
-
       },
-      preciofinal: {
+      precioFinal: {
         type: Sequelize.DOUBLE,
         allowNull: false
-
       },
-      idarticulo: {
+      codigoArticulo: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'articulo',
-          key: 'id'
+          key: 'codigoArticulo'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-
       },
-      idcompra: {
+      idCompra: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'compra',
-          key: 'id'
+          key: 'idCompra'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
 
       },
-      idtalla: {
+      idTalla: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'talla',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-
-      },
-      idcolor: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'color',
-          key: 'id',
+          key: 'idTalla'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

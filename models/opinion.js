@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   opinion.init({
-    id: {
+    idOpinion: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    idproducto: {
+    codigoArticulo: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    idusuario: {
+    usuario: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

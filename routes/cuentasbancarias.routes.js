@@ -4,12 +4,12 @@ const { validateAccount } = require('../validations/accountvalidation');
 
 
 
-router.get('/:idusuario', cuentasbancarias.getAll);
+router.get('/:usuario', cuentasbancarias.getAll);
 
 router.post('/', validateAccount,cuentasbancarias.create);
 
-router.put('/:id', cuentasbancarias.update);
+router.put('/:numeroTarjeta', cuentasbancarias.update);
 
-router.delete('/:id', cuentasbancarias.delete);
+router.delete('/:numeroTarjeta', cuentasbancarias.delete);
 
 module.exports = router;

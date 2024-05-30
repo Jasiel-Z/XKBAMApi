@@ -3,7 +3,7 @@ const { usuario } = require('../models');
 
 
 const validateAccount = [
-    check('numerocuenta')
+    check('tarjetabancaria')
         .notEmpty().withMessage('Campos vacíos')
         .isString().withMessage('Tipo de dato no aceptado')
         .isLength({max : 50 }).withMessage('Se ha excedido el máximo de caracteres')
@@ -15,10 +15,10 @@ const validateAccount = [
         .isLength({max : 50 }).withMessage('Se ha excedido el máximo de caracteres')
         .trim().escape(),
 
-    check('fechaexpiracion')
+    check('fechaExpiracion')
         .notEmpty().withMessage('Campos vacíos')
         .isDate().withMessage('Tipo de dato no aceptado')
-        .custom((fechaexpiracion) => {
+        .custom((fechaExpiracion) => {
             const today = new Date();
             if(fechaexpiracion < hoy )
                 return Promise.reject('La tarjeta ya ha expirado');
@@ -26,12 +26,12 @@ const validateAccount = [
             return true;
         }),
 
-    check('idusuario')
+    check('usuario')
         .notEmpty().withMessage('Campos vacíos')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt()
-        .custom( async idusuario => {
-            const user = await usuario.findByPk(idusuario);
+        .custom( async usuario => {
+            const user = await usuario.findByPk(usuario);
             if(!user)
                 return Promise.reject('Usuario no encontrado');
         }),

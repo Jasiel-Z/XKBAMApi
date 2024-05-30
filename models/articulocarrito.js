@@ -11,38 +11,34 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   articulocarrito.init({
-    id: {
+    idArticuloCarrito: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    cantidadarticulo:{
+    cantidadArticulo:{
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    preciounitario:{
+    precioUnitario:{
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    preciofinal: {
+    precioFinal: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    idproducto: {
+    codigoArticulo: {
       type:DataTypes.STRING,
       allowNull: false
 
     },
-    idcarrito: {
+    idCarrito: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    idtalla: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    idcolor: {
+    idTalla: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   carrito.init({
-    id: {
+    idCarrito: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    idusuario: {
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false
     }

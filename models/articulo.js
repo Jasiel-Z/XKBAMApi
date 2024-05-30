@@ -5,13 +5,13 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class articulo extends Model {
     static associate(models) {
-      articulo.belongsToMany(models.compra, {through: 'articulocompra', foreignKey: 'idarticulo'})
-      articulo.belongsToMany(models.carrito, {through: 'articulocarrito', foreignKey: 'idarticulo'})
-      articulo.hasMany(models.multimedia, {foreignKey: 'idarticulo'})
+      articulo.belongsToMany(models.compra, {through: 'articulocompra', foreignKey: 'codigoArticulo'})
+      articulo.belongsToMany(models.carrito, {through: 'articulocarrito', foreignKey: 'codigoArticulo'})
+      articulo.hasMany(models.multimedia, {foreignKey: 'codigoArticulo'})
     }
   }
   articulo.init({
-    id: {
+    codigoArticulo: {
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
@@ -29,7 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    idcategoria:{
+    idColor:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    idCategoria:{
       type: DataTypes.INTEGER,
       allowNull: false
     } 

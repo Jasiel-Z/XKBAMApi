@@ -2,12 +2,12 @@ const {check, validateResult} = require('express-validator');
 const {articulo, usuario, talla, color} =  require('../models');
 
 const validatePurchase = [
-    check('idusuario')
+    check('usuario')
         .notEmpty().withMessage('Campo vacío')
         .isString().withMessage('Tipo de dato no aceptado')
         .trim().escape()
-        .custom(async (idusuario) => {
-            const user = await usuario.findByPk(idusuario);
+        .custom(async (usuario) => {
+            const user = await usuario.findByPk(usuario);
             if (!user) {
                 return Promise.reject('Usuario no encontrado');
             }
@@ -20,51 +20,40 @@ const validatePurchase = [
 
     check('articulos').isArray().withMessage('Se espera una lista de artículos'),
 
-    check('articulos.*.idarticulo')
+    check('articulos.*.codigoArticulo')
         .notEmpty().withMessage('Campo vacío')
         .isString().withMessage('Tipo de dato no aceptado')
         .trim()
-        .custom(async (idarticulo) => {
-            const item = await articulo.findByPk(idarticulo);
+        .custom(async (codigoArticulo) => {
+            const item = await articulo.findByPk(codigoArticulo);
             if (!item) {
                 return Promise.reject('Artículo no encontrado');
             }
         }),
 
-    check('articulos.*.cantidadarticulo')
+    check('articulos.*.cantidadArticulo')
         .notEmpty().withMessage('Campo vacío')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt(),
 
-    check('articulos.*.preciounitario')
+    check('articulos.*.precioUnitario')
         .notEmpty().withMessage('Campo vacío')
         .isFloat().withMessage('Tipo de dato no aceptado')
         .toFloat(),
 
-    check('articulos.*.preciofinal')
+    check('articulos.*.precioFinal')
         .notEmpty().withMessage('Campo vacío')
         .isFloat().withMessage('Tipo de dato no aceptado')
         .toFloat(),
 
-    check('articulos.*.idtalla')
+    check('articulos.*.idTalla')
         .notEmpty().withMessage('Campo vacío')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt()
-        .custom(async (idtalla) => {
-            const size = await talla.findByPk(idtalla);
+        .custom(async (idTalla) => {
+            const size = await talla.findByPk(idTalla);
             if (!size) {
                 return Promise.reject('Talla no encontrada');
-            }
-        }),
-
-    check('articulos.*.idcolor')
-        .notEmpty().withMessage('Campo vacío')
-        .isInt().withMessage('Tipo de dato no aceptado')
-        .toInt()
-        .custom(async (idcolor) => {
-            const color = await color.findByPk(idcolor);
-            if (!color) {
-                return Promise.reject('Color no encontrado');
             }
         }),
 

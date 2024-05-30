@@ -6,13 +6,14 @@ let self = {}
 
 self.create = async function(req, res){
     try{
-        const {id, nombre, desripcion, precio, idcategoria} = req.body;
+        const {codigoArticulo, nombre, descripcion, precio, idColor, idCategoria} = req.body;
         const newItem = await articulo.create({
-            id: id,
+            codigoArticulo: codigoArticulo,
             nombre: nombre,
-            desripcion: desripcion,
+            descripcion: descripcion,
             precio: precio,
-            idcategoria: idcategoria
+            idColor: idColor,
+            idCategoria: idCategoria
         })
 
         return res.status(201).json();
@@ -26,7 +27,7 @@ self.update = async function(req, res){
         const itemId = req.params;
         const body = req.body;
 
-        let item = await articulo.update(body, {where: {id: itemId}});
+        let item = await articulo.update(body, {where: {codigoArticulo: itemId}});
         if(!item)
             return res.status(404).json({message: 'Artículo no encontrado'});
 
@@ -39,15 +40,15 @@ self.update = async function(req, res){
 
 self.delete = async function(req, res){
     try{
-        const itemId = req.params.id;
+        const itemId = req.params.codigoArticulo;
         let item = await articulo.findByPk(itemId);
 
         if(!item)
             return res.status(404).json({message: 'Artículo no encontrado'});
 
-        item = await cuentabancaria.destroy({where: 
+        /*item = await cuentabancaria.destroy({where: 
             {id: itemId}
-        });
+        });*/
 
         if(item === 1)
             return res.status(204).json({message: 'Artículo eliminado'});
@@ -75,9 +76,9 @@ self.getAll = async function(req, res){
 
 self.getByCategory = async function(req, res){
     try{
-        const categoryId = req.params.idcategoria;
+        const categoryId = req.params.idCategoria;
         const items = await articulo.findAll({
-            where: { idcategoria: categoryId }
+            where: { idCategoria: categoryId }
         });
 
         return res.status(200).json(items);

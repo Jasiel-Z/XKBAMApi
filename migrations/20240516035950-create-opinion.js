@@ -3,18 +3,18 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('opinion', {
-      id: {
+      idOpinion: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      articuloid: {
+      codigoArticulo: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'articulo',
-          key: 'id'
+          key: 'codigoArticulo'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
@@ -29,12 +29,12 @@ module.exports = {
         allowNull: false
 
       },
-      usuarioid: {
+      usuario: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'usuario',
-          key: 'nombreusuario'
+          key: 'usuario'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

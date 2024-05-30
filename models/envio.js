@@ -14,17 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   envio.init({
-    id: {
+    idEnvio: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    fechacreacion: {
+    fechaCreacion: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    fechaentrega: {
+    fechaEntrega: {
      type: DataTypes.DATE,
      allowNull: false
     },
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    idcompra: {
+    idCompra: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

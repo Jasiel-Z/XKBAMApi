@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('articulo', {
-      id: {
+      codigoArticulo: {
         allowNull: false, 
         primaryKey: true,
         type: Sequelize.STRING
@@ -21,12 +21,22 @@ module.exports = {
         allowNull: false
 
       },
-      idcategoria: {
+      idColor: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'color',
+          key: 'idColor'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'NO ACTION'
+      },
+      idCategoria: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'categoria',
-          key: 'id'
+          key: 'idCategoria'
         },
         onUpdate: 'CASCADE',
         onDelete: 'NO ACTION'

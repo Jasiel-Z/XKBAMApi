@@ -4,7 +4,7 @@ let self = {}
 self.getAll = async function (req, res){
     try{
         const tallas = await talla.findAll({attributes: [
-            ['id', 'tallaid'],
+            ['idTalla', 'idTalla'],
             nombre
         ]});
         return res.status(200).json(tallas);

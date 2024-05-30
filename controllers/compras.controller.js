@@ -5,24 +5,23 @@ let self = {}
 self.create = async function (req, res){
     const t = await sequelize.transaction();
     try{
-        const { idusuario, estado, articulos } = req.body;
-        const montofinal = articulos.reduce((total, articulo) => total + articulo.preciofinal, 0);
+        const { usuario, estado, articulos } = req.body;
+        const montoFinal = articulos.reduce((total, articulo) => total + articulo.precioFinal, 0);
 
         const nuevaCompra = await compra.create({
-            idusuario,
+            usuario,
             estado,
             fechacompra: new Date(),
-            montofinal
+            montoFinal
         }, {transaction: t});
 
         const articulosCompra = articulos.map(articulo => ({
-            cantidadarticulo: articulo.cantidadarticulo,
-            preciounitario: articulo.preciounitario,
-            preciofinal: articulo.preciofinal,
-            idarticulo: articulo.idarticulo,
-            idcompra: nuevaCompra.id,
-            idtalla: articulo.idtalla,
-            idcolor: articulo.idcolor
+            cantidadArticulo: articulo.cantidadArticulo,
+            precioUnitario: articulo.precioUnitario,
+            precioFinal: articulo.precioFinal,
+            codigoArticulo: articulo.codigoArticulo,
+            idCompra: nuevaCompra.idCompra,
+            idTalla: articulo.idTalla,
         }));
         
         await articulocompra.bulkCreate(articulosCompra, {transaction: t});

@@ -4,9 +4,9 @@ Content-Type: application/json
 {
     "estado": "Veracruz",
     "municipio": "Xalapa",
-    "codigopostal": "91231",
+    "codigoPostal": "91231",
     "calle": "16 de Septiembre",
-    "numeroexterno": 22,
-    "idusuario": "JasielZ"
+    "numeroExterno": 22,
+    "usuario": "JasielZ"
 }
 

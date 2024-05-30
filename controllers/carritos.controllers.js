@@ -4,9 +4,9 @@ let self = {}
 
 self.create() = async function (req, res){
     try{
-        const idusuario = req.body;
+        const usuario = req.body;
         const newshopcart = await carrito.create({
-            idusuario: idusuario
+            usuario: usuario
         });
         return res.status(201).json (newshopcart);
     }catch(error){
@@ -17,12 +17,12 @@ self.create() = async function (req, res){
 
 self.addCartItem = async function (req, res) {
     try{
-        const {idarticulo, cantidadarticulo}  = req.body;
+        const {codigoArticulo, cantidadArticulo}  = req.body;
 
-        const item = await articulo.findByPk(idarticulo);
+        const item = await articulo.findByPk(codigoArticulo);
 
-        req.body.preciounitario = item.preciounitario;
-        req.body.preciofinal = item.preciounitario * cantidadarticulo;
+        req.body.precioUnitario = item.precioUnitario;
+        req.body.precioFinal = item.precioUnitario * cantidadArticulo;
 
         const newcartitem = await articulocarrito.create(req.body);
 
@@ -35,11 +35,11 @@ self.addCartItem = async function (req, res) {
 
 self.deleteCartItem = async function (req, res){
     try{
-        const {idcarrito, idarticulo} = req.params;
+        const {idCarrito, codigoArticulo} = req.params;
         const  deleteditem = await articulocarrito.destroy({ where: 
             {
-                idcarrito: idcarrito,
-                idarticulo: idarticulo        
+                idCarrito: idCarrito,
+                codigoArticulo: codigoArticulo        
             }
         });
 

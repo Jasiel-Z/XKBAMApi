@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('multimedia', {
-      id: {
+      idMultimedia: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -13,16 +13,19 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      idarticulo: {
+      contenido: {
+        type: Sequelize.BLOB,
+        allowNull: false,
+      },
+      codigoArticulo: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'articulo',
-          key: 'id'
+          key: 'codigoArticulo'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-
       },
       createdAt: {
         allowNull: false,

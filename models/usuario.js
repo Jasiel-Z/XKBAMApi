@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      usuario.hasMany(models.direccion, {foreignKey: 'idusuario'})
-      usuario.hasMany(models.tarjetabancaria, {foreignKey: 'idusuario'})
-      usuario.hasMany(models.compra, {foreignKey: 'idusuario'})
-      usuario.hasMany(models.opinion, {foreignKey: 'idusuario'})
+      usuario.hasMany(models.direccion, {foreignKey: 'usuario'})
+      usuario.hasMany(models.tarjetabancaria, {foreignKey: 'usuario'})
+      usuario.hasMany(models.compra, {foreignKey: 'usuario'})
+      usuario.hasMany(models.opinion, {foreignKey: 'usuario'})
     }
     
   }
   usuario.init({
-    nombreusuario: {
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    apellidopaterno: {
+    apellidoPaterno: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    apellidomaterno: {
+    apellidoMaterno: {
       type: DataTypes.STRING,
       allowNull: false
     },

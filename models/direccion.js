@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   direccion.init({
-    id: {
+    idDireccion: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    codigopostal: {
+    codigoPostal: {
       type: DataTypes.STRING,
       allowNull: false
     }, 
@@ -36,11 +36,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    numeroexterno: {
+    numeroExterno: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    idusuario: {
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false
     },

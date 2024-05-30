@@ -3,18 +3,18 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('carrito', {
-      id: {
+      idCarrito: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idusuario: {
+      usuario: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'usuario',
-          key: 'nombreusuario'
+          key: 'usuario'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

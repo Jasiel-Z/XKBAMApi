@@ -3,18 +3,18 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('envio', {
-      id: {
+      idEnvio: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fechacreacion: {
+      fechaCreacion: {
         type: Sequelize.DATE,
         allowNull: false
 
       },
-      fechaentrega: {
+      fechaEntrega: {
         type: Sequelize.DATE,
         allowNull: false
       },
@@ -22,12 +22,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      idcompra: {
+      idCompra: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'envio',
-          key: 'id'
+          model: 'compra',
+          key: 'idCompra'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

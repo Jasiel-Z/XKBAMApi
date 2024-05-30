@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   multimedia.init({
-    id: {
+    idMultimedia: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BLOB,
       allowNull: false
     },
-    idarticulo: {
+    codigoArticulo: {
       type: DataTypes.STRING,
       allowNull: false
     },

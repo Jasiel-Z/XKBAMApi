@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   compra.init({
-    id: {
+    idCompra: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -24,15 +24,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    fechacompra: {
+    fechaCompra: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    montofinal: {
+    montoFinal: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    idusuario: {
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false
     },

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   tarjetabancaria.init({
-    id: {
+    numeroTarjeta: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -28,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    idusuario: {
+    cvv: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    usuario: {
       type: DataTypes.STRING,
       allowNull: false
     },

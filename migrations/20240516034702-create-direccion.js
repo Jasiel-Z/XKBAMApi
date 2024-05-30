@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('direccion', {
-      id: {
+      idDireccion: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -27,16 +27,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      numeroexterno: {
+      numeroExterno: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      idusuario: {
+      usuario: {
         type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'usuario',
-          key: 'nombreusuario'
+          key: 'usuario'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

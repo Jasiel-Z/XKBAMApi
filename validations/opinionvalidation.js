@@ -2,12 +2,12 @@ const {check, validationResult} = require('express-validator');
 const {articulo, usuario} = require ('../models')
 
 const validateOpinion = [
-    check('idproducto')
+    check('codigoArticulo')
         .notEmpty().withMessage('Campos vacíos')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt()
-        .custom( async (idproducto) => {
-            const item = await articulo.findByPk(idproducto);
+        .custom( async (codigoArticulo) => {
+            const item = await articulo.findByPk(codigoArticulo);
             if(!item)
                 return Promise.reject('Artículo no encontrado');      
         }),
@@ -23,12 +23,12 @@ const validateOpinion = [
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt(), 
     
-    check('idusuario')
+    check('usuario')
         .notEmpty().withMessage('Campos vacíos')
         .isInt().withMessage('Tipo de dato no aceptado')
         .toInt()
-        .custom( async (idusuario) => {
-            const user = await usuario.findByPk(idusuario);
+        .custom( async (usuario) => {
+            const user = await usuario.findByPk(usuario);
             if(!user)
                 return Promise.reject('Usuario no encontrado');      
         }),

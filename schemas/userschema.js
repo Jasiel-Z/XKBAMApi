@@ -7,7 +7,7 @@ const accountSchema = Joi.object({
     correo: Joi.string().required().messages({
         'any.required': 'El correo es obligatorio'
     }), 
-    idrol: Joi.number().integer().required().messages({
+    idRol: Joi.number().integer().required().messages({
         'any.required': 'El rol es obligatorio'
     }), 
 

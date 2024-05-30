@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      talla.hasMany(models.articulocarrito, {foreignKey: 'idtalla'})
-      talla.hasMany(models.articulocarrito, {foreignKey: 'idtalla'})
+      talla.hasMany(models.articulocarrito, {foreignKey: 'idTalla'})
+      talla.hasMany(models.articulocarrito, {foreignKey: 'idTalla'})
     }
     
   }
   talla.init({
-    id: {
+    idTalla: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

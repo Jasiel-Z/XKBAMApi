@@ -1,4 +1,4 @@
-const {usuario, cuenta, carrito ,rol, Sequelize, sequelize} = require('../models')
+const { usuario, cuenta, carrito, rol, Sequelize, sequelize } = require('../models');
 const bcrypt = require('bcrypt')
 const { error } = require('console')
 const crypto = require('crypto')
@@ -12,29 +12,30 @@ self.create = async function (req, res){
     try{
 
         const { usuario: userData, cuenta: accountData } = req.body;
-        const { nombreusuario, nombre, apellidopaterno, apellidomaterno, genero } = userData;
-        const { contrasena, correo, idrol } = accountData;
+        const { usuario: userName, nombre, apellidoPaterno, apellidoMaterno, genero } = userData;
+        const { contrasena, correo, idRol } = accountData;
 
         const hashedPassword = await bcrypt.hash(contrasena, 10);
 
         const newUser = await usuario.create({
-            nombreusuario: nombreusuario,
+            usuario: userName,
             nombre: nombre,
-            apellidopaterno: apellidopaterno,
-            apellidomaterno: apellidomaterno,
+            apellidoPaterno: apellidoPaterno,
+            apellidoMaterno: apellidoMaterno,
             genero: genero
-        }, {transaction: t});
+        }, { transaction: t });
 
         const newAccount = await cuenta.create({
             contrasena: hashedPassword,
             correo: correo,
-            idrol: idrol,
-            idusuario: newUser.nombreusuario
-        }, {transaction: t});
+            idRol: idRol,
+            usuario: newUser.usuario
+        }, { transaction: t });
 
         const newShopCart = await carrito.create({
-            idusuario: newUser.nombreusuario
-        }, {transaction: t});
+            usuario: newUser.usuario
+        }, { transaction: t });
+
 
         await t.commit();
         return res.status(201).json({
@@ -48,6 +49,7 @@ self.create = async function (req, res){
         return res.status(500).json({ error: error.message});
     }
 }
+
 
 self.update = async function (req, res){
     try{
