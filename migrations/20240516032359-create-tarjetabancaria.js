@@ -5,9 +5,8 @@ module.exports = {
     await queryInterface.createTable('tarjetabancaria', {
       numeroTarjeta: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       titular: {
         type: Sequelize.STRING,
