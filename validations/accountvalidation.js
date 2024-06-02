@@ -5,14 +5,12 @@ const { usuario } = require('../models');
 const validateAccount = [
     check('tarjetabancaria')
         .notEmpty().withMessage('Campos vacíos')
-        .isString().withMessage('Tipo de dato no aceptado')
-        .isLength({max : 50 }).withMessage('Se ha excedido el máximo de caracteres')
-        .trim().escape(),
+        .isInt().withMessage('Tipo de dato no aceptado'),
 
     check('titular')
         .notEmpty().withMessage('Campos vacíos')
         .isString().withMessage('Tipo de dato no aceptado')
-        .isLength({max : 50 }).withMessage('Se ha excedido el máximo de caracteres')
+        .isLength({max : 255 }).withMessage('Se ha excedido el máximo de caracteres')
         .trim().escape(),
 
     check('fechaExpiracion')
@@ -26,14 +24,13 @@ const validateAccount = [
             return true;
         }),
 
-    check('usuario')
+        check('usuario')
         .notEmpty().withMessage('Campos vacíos')
-        .isInt().withMessage('Tipo de dato no aceptado')
-        .toInt()
-        .custom( async usuario => {
-            const user = await usuario.findByPk(usuario);
+        .isString().withMessage('Tipo de dato no aceptado')        
+        .custom(async (usuarioid) => {
+            const user = await usuario.findByPk(usuarioid);
             if(!user)
-                return Promise.reject('Usuario no encontrado');
+                throw new Error('Usuario no encontrado');
         }),
 
     (req, res, next) => {
