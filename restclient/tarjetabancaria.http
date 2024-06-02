@@ -1,0 +1,13 @@
+POST http://localhost:3000/api/cuentas
+Content-Type: application/json
+
+{
+    "estado": "Veracruz",
+    "municipio": "Xalapa",
+    "codigoPostal": "91231",
+    "calle": "16 de Septiembre",
+    "numeroExterno": 22,
+    "usuario": "JasielMaster"
+}
+
+###

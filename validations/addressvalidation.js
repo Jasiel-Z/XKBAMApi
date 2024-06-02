@@ -32,12 +32,12 @@ const validateAddress = [
         .toInt(), 
 
     check('usuario')
-        .isInt().withMessage('Tipo de dato no aceptado')
-        .custom(async (usuario) => {
-          const user = await usuario.findByPk(usuario);
-          if (!user) {
-            return Promise.reject('Usuario no encontrado');
-          }
+        .notEmpty().withMessage('Campos vacíos')
+        .isString().withMessage('Tipo de dato no aceptado')        
+        .custom(async (usuarioid) => {
+            const user = await usuario.findByPk(usuarioid);
+            if(!user)
+                throw new Error('Usuario no encontrado');
         }),
 
     (req, res, next) => {

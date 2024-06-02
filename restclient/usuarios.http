@@ -76,3 +76,25 @@ Content-Type: application/json
 }
 
 ###
+
+
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "usuario": {      
+        "usuario": "JasielMaster",
+        "nombre": "Jasiel",
+        "apellidoPaterno": "Zavaleta",
+        "apellidoMaterno": "García",
+        "genero": 1
+        
+    },
+    "cuenta": {
+        "correo": "jasielzav@gmail.com",
+        "contrasena": "DRACULA123",
+        "idRol": 2
+    }
+}
+
+###
