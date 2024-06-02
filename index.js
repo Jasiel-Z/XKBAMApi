@@ -22,12 +22,14 @@ app.use((req, res, next) => {
 app.use("/api/usuarios", require('./routes/usuarios.routes'))
 app.use("/api/cuentasbancarias", require('./routes/cuentasbancarias.routes'))
 app.use("/api/direcciones", require('./routes/direcciones.routes'))
+app.use("/api/carritos", require('./routes/carritos.routes'))
 app.use("/api/categorias", require('./routes/categorias.routes'))
 app.use("/api/colores", require('./routes/colores.routes'))
 app.use("/api/tallas", require('./routes/tallas.routes'))
 app.use("/api/opiniones", require('./routes/opiniones.routes'))
 app.use("/api/compras", require('./routes/compras.routes'))
 app.use("/api/autenticacion", require('./routes/autenticacion.routes'))
+app.use("/api/articulos", require('./routes/articulos.routes'))
 
 
 

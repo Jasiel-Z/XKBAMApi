@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      carrito.hasMany(models.articulocarrito, { foreignKey: 'idCarrito', sourceKey: 'idCarrito' });
+      carrito.hasMany(models.articulocompra, { foreignKey: 'idCarrito', sourceKey: 'idCarrito' });
     }
   }
   carrito.init({

@@ -15,10 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   tarjetabancaria.init({
     numeroTarjeta: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
     },
     titular: {
       type: DataTypes.STRING,

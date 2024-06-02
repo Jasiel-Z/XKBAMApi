@@ -1,0 +1,13 @@
+### Agregar un artículo al carrito
+POST http://localhost:3000/api/carritos/articulo
+Content-Type: application/json
+
+{
+  "codigoArticulo": "ART04",
+  "cantidadArticulo": 2,
+  "idTalla": 2,
+  "idCarrito": 2
+}
+
+###
+GET http://localhost:3000/api/carritos/2

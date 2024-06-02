@@ -6,102 +6,104 @@ let self = {}
 
 self.create = async function(req, res){
     try{
-        const {codigoArticulo, nombre, descripcion, precio, idColor, idCategoria} = req.body;
+        const { codigoArticulo, nombre, descripcion, precio, idColor, idCategoria } = req.body;
         const newItem = await articulo.create({
-            codigoArticulo: codigoArticulo,
-            nombre: nombre,
-            descripcion: descripcion,
-            precio: precio,
-            idColor: idColor,
-            idCategoria: idCategoria
-        })
+            codigoArticulo,
+            nombre,
+            descripcion,
+            precio,
+            idColor,
+            idCategoria
+        });
 
-        return res.status(201).json();
-    }catch(error){
-        return res.status(500).json({ error: 'Error interno del servidor'});
+        return res.status(201).json(newItem);
+    } catch(error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
 self.update = async function(req, res){
     try{
-        const itemId = req.params;
+        const { codigoArticulo } = req.params;
         const body = req.body;
 
-        let item = await articulo.update(body, {where: {codigoArticulo: itemId}});
-        if(!item)
-            return res.status(404).json({message: 'Artículo no encontrado'});
+        let [updated] = await articulo.update(body, { where: { codigoArticulo } });
+        if (updated === 0) return res.status(404).json({ message: 'Artículo no encontrado' });
 
-        return res.status(404).json(item);
-    }catch(error){
-        return res.status(500).json({error: 'Error interno del servidor'});
+        const updatedItem = await articulo.findByPk(codigoArticulo);
+        return res.status(200).json(updatedItem);
+    } catch(error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
-
 self.delete = async function(req, res){
     try{
-        const itemId = req.params.codigoArticulo;
-        let item = await articulo.findByPk(itemId);
+        const { codigoArticulo } = req.params;
+        let item = await articulo.findByPk(codigoArticulo);
 
-        if(!item)
-            return res.status(404).json({message: 'Artículo no encontrado'});
+        if (!item) return res.status(404).json({ message: 'Artículo no encontrado' });
 
-        /*item = await cuentabancaria.destroy({where: 
-            {id: itemId}
-        });*/
+        await articulo.destroy({ where: { codigoArticulo } });
 
-        if(item === 1)
-            return res.status(204).json({message: 'Artículo eliminado'});
-
-        return res.status(404).json({message: 'Error al intentar borrar el artículo'});
-
-    }catch(error){
-        res.status(500).json({error: 'Error interno del servidor'});
+        return res.status(204).json({ message: 'Artículo eliminado' });
+    } catch(error) {
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
-
 }
 
 self.getAll = async function(req, res){
     try{
         const items = await articulo.findAll();
-        if(!items)
-            return res.status(404).json({message: 'No se encontraron artículos'});
-        
+        if (!items) return res.status(404).json({ message: 'No se encontraron artículos' });
+
         return res.status(200).json(items);
-    }catch (error){
-        return res.status(500).json({error: 'Error interno del servidor'});
+    } catch (error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
-
 self.getByCategory = async function(req, res){
     try{
-        const categoryId = req.params.idCategoria;
-        const items = await articulo.findAll({
-            where: { idCategoria: categoryId }
-        });
+        const { idCategoria } = req.params;
+        const items = await articulo.findAll({ where: { idCategoria } });
 
         return res.status(200).json(items);
-    }catch(error){
-        res.status(500).json({error: 'Error interno del servidor'});
+    } catch(error) {
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
 self.getByTerm = async function(req, res){
     try{
-        const query = req.query.q;
+        const { q } = req.query;
         const items = await articulo.findAll({
             where: {
                 [Op.or]: [
-                    {nombre: { [Op.like]: `%${query}%` } },
-                    { descripcion: { [Op.like]: `%${query}%` } }
+                    { nombre: { [Op.like]: `%${q}%` } },
+                    { descripcion: { [Op.like]: `%${q}%` } }
                 ]
             }
         });
 
         return res.status(200).json(items);
-    }catch(error){
-        return res.status(500).json({error: 'Error interno del servidor'});
+    } catch(error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+self.getById = async function(req, res){
+    try{
+        const { codigoArticulo } = req.params;
+        const item = await articulo.findByPk(codigoArticulo);
+
+        if (!item) {
+            return res.status(404).json({ message: 'Artículo no encontrado' });
+        }
+
+        return res.status(200).json(item);
+    } catch(error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 

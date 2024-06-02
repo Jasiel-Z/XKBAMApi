@@ -1,0 +1,39 @@
+### Crear un nuevo artículo
+POST http://localhost:3000/api/articulos
+Content-Type: application/json
+
+{
+  "codigoArticulo": "ART05",
+  "nombre": "Articulo 5",
+  "descripcion": "Descripción del Artículo 5",
+  "precio": 500.0,
+  "idColor": 5,
+  "idCategoria": 1
+}
+
+### Actualizar un artículo por su código
+PUT http://localhost:3000/api/articulos/ART123
+Content-Type: application/json
+
+{
+  "nombre": "Articulo 1 Actualizado",
+  "descripcion": "Descripción actualizada del Artículo 1",
+  "precio": 150.0,
+  "idColor": 2,
+  "idCategoria": 2
+}
+
+### Eliminar un artículo por su código
+DELETE http://localhost:3000/api/articulos/ART123
+
+### Obtener todos los artículos
+GET http://localhost:3000/api/articulos
+
+### Obtener artículos por categoría
+GET http://localhost:3000/api/articulos/categoria/1
+
+### Buscar artículos por término en nombre o descripción
+GET http://localhost:3000/api/articulos/search?q=Articulo
+
+### Obtener un artículo por su código
+GET http://localhost:3000/api/articulos/ART123

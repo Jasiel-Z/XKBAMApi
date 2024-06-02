@@ -61,16 +61,16 @@ Content-Type: application/json
 
 {
     "usuario": {      
-        "usuario": "JasielZ",
-        "nombre": "Jasiel Emir",
-        "apellidoPaterno": "Zavaleta",
-        "apellidoMaterno": "García",
+        "usuario": "CrisCris",
+        "nombre": "Cristopher",
+        "apellidoPaterno": "Vázquez",
+        "apellidoMaterno": "Villa",
         "genero": 1
         
     },
     "cuenta": {
-        "correo": "jasielz@gmail.com",
-        "contrasena": "QWERTY123",
+        "correo": "cris990077@hotmail.com",
+        "contrasena": "CrisCris8",
         "idRol": 1
     }
 }
