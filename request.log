@@ -143,3 +143,4 @@
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T05:10:39.192Z"}
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T05:13:11.080Z"}
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T05:14:02.806Z"}
+{"level":"info","message":"GET /api/carritos/2","timestamp":"2024-06-02T01:49:25.909Z"}
