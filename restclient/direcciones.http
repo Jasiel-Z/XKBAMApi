@@ -11,3 +11,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hc
     "usuario": "JasielMaster"
 }
 ###
+
+POST http://localhost:3000/api/articulos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiamFzaWVsemF2QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6Ikphc2llbE1hc3RlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNsaWVudGUiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3MjkwNjM0LCJleHAiOjE3MTcyOTI0MzR9.CKHno8-RR_SeOxtOVXKfe6HErwFIsG8Ifv7-5TXvGCs
+
+{
+    "nombre": "Veracruz",
+    "descripcion": "Xalapa",
+    "codigoarticulo": "91231",
+    "precio": 9123,
+    "idcolor": 1,
+    "idcategoria": 1,
+}
