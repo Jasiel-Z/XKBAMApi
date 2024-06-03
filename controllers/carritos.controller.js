@@ -94,6 +94,26 @@ self.getCartItemsByCartId = async function(req, res) {
     }
 }
 
+self.getCartIdByUserId = async function(req, res) {
+    try {
+        const { usuario } = req.params;
+
+        // Buscar el carrito asociado al usuario dado su ID
+        const cart = await carrito.findOne({
+            where: { usuario: usuario },
+            attributes: ['idCarrito']
+        });
+
+        if (!cart) {
+            return res.status(404).json({ message: 'No se encontró un carrito para el usuario dado' });
+        }
+
+        return res.status(200).json({ idCarrito: cart.idCarrito });
+    } catch (error) {
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+}
+
 
 module.exports = self;
 

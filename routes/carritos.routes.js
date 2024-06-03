@@ -11,4 +11,6 @@ router.post('/articulo',validateItemToAdd, carritos.addCartItem)
 
 router.get('/:idCarrito', carritos.getCartItemsByCartId);
 
+router.get('/carritousuario/:usuario', carritos.getCartIdByUserId);
+
 module.exports = router;

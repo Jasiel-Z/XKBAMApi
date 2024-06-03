@@ -1,1 +1,7 @@
 {"level":"error","message":"Unexpected token 'B', ...\"ization\": Bearer eyJ\"... is not valid JSON"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 116"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 119"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 119"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 119"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 119"}
+{"level":"error","message":"Expected double-quoted property name in JSON at position 119"}
