@@ -1,12 +1,12 @@
-POST http://localhost:3000/api/cuentas
+POST http://localhost:3000/api/cuentasbancarias
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiamFzaWVsemF2QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6Ikphc2llbE1hc3RlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNsaWVudGUiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3MzcxNjMxLCJleHAiOjE3MTczNzM0MzF9.shWLMIsEzvKZtSRTY9iei2i8HFSoPV4k-Omw1elUS-o
 
 {
-    "estado": "Veracruz",
-    "municipio": "Xalapa",
-    "codigoPostal": "91231",
-    "calle": "16 de Septiembre",
-    "numeroExterno": 22,
+    "numeroTarjeta": "1233111144566676 ",
+    "titular": "Jasiel Zavaleta",
+    "fechaExpiracion": "2024-12-12",
+    "cvv": "123",
     "usuario": "JasielMaster"
 }
 

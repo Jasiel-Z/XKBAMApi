@@ -1,13 +1,11 @@
-const { cuenta, usuario, Sequelize } = require('../models');
+const { tarjetabancaria, usuario, Sequelize } = require('../models');
 const { validationResult } = require('express-validator');
 
 let self = {}
 
 self.create = async function (req, res){
     try{
-        const errors = validationResult(req);
-        if(!errors.isEmpty())
-            return res.status(400).json({errors: errors.array() });  
+        
 
         const {numeroTarjeta, titular, fechaExpiracion, cvv, usuario} = req.body;
         const newaccount = await tarjetabancaria.create({

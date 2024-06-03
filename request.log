@@ -144,3 +144,9 @@
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T05:13:11.080Z"}
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T05:14:02.806Z"}
 {"level":"info","message":"GET /api/carritos/2","timestamp":"2024-06-02T01:49:25.909Z"}
+{"level":"info","message":"POST /api/cuentasbancarias","timestamp":"2024-06-02T23:40:19.817Z"}
+{"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-02T23:40:31.300Z"}
+{"level":"info","message":"POST /api/cuentasbancarias","timestamp":"2024-06-02T23:41:03.902Z"}
+{"level":"info","message":"POST /api/cuentasbancarias","timestamp":"2024-06-02T23:44:29.455Z"}
+{"level":"info","message":"POST /api/cuentasbancarias","timestamp":"2024-06-02T23:46:01.339Z"}
+{"level":"info","message":"POST /api/cuentasbancarias","timestamp":"2024-06-02T23:47:30.915Z"}
