@@ -17,9 +17,9 @@ message GenerateReportResponse {
 
 message UploadMultimediaRequest {
     oneof request {
-        string item_id = 1;
+        string item = 1;
         string nombre = 2;
-        bytes photo_data = 3;
+        bytes data = 3;
     }
 }
 

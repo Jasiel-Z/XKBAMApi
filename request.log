@@ -169,3 +169,4 @@
 {"level":"info","message":"POST /api/articulos","timestamp":"2024-06-04T04:51:50.358Z"}
 {"level":"info","message":"POST /api/articulos","timestamp":"2024-06-04T04:54:05.756Z"}
 {"level":"info","message":"POST /api/articulos","timestamp":"2024-06-04T05:01:42.063Z"}
+{"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-04T15:29:35.726Z"}

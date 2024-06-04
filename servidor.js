@@ -30,24 +30,29 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
 });
 
  function uploadMultimediaImpl(call, callback) {
-    let item_id, nombreArchivo;
+    let itemid, nombreArchivo, chunk;
     let tempFilePath;
 
+
     call.on('data', (UploadMultimediaRequest) => {
-        if (UploadMultimediaRequest.item_id) {
-            item_id = UploadMultimediaRequest.request.item_id;
-            console.log("Received item_id:", item_id);
-        } else if (UploadMultimediaRequest.request.nombre) {
+        if (UploadMultimediaRequest.item) {
+            itemid = UploadMultimediaRequest.item;
+            console.log("Received item_id:", itemid);
+        } else if (UploadMultimediaRequest.nombre) {
             nombreArchivo = UploadMultimediaRequest.nombre;
-            console.log("Received nombre:", nombreArchivo);
             tempFilePath = `./uploads/${nombreArchivo}`;
-        } else if (UploadMultimediaRequest.request.photo_data) {
-            fs.appendFileSync(tempFilePath, UploadMultimediaRequest.photo_data);
+            console.log("Received nombre:", tempFilePath);
+
+        } else if (UploadMultimediaRequest.data) {
+            chunk = UploadMultimediaRequest.data;
+            fs.appendFileSync(tempFilePath, chunk);
             process.stdout.write('.');
         }
     }).on('end', async () => {
         console.log('\nEnvío de datos terminado.');
+        callback(null, { nombre: nombreArchivo });
 
+        /*
         try {
             const photo_data = fs.readFileSync(tempFilePath);
             fs.unlinkSync(tempFilePath);
@@ -55,14 +60,20 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
             const newPhoto = await multimedia.create({
                 nombre: nombreArchivo,
                 contenido: photo_data,
-                codigoArticulo: item_id
+                codigoArticulo: itemid
             });
 
+
             callback(null, { response: "Multimedia subida exitosamente" });
+
+
         } catch (err) {
             console.error(err);
             callback({ code: grpc.status.INTERNAL, message: "Error al guardar la multimedia" });
+
         }
+                                */
+
     });
 
     call.on('error', (error) => {
