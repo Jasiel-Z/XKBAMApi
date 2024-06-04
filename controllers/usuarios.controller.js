@@ -60,4 +60,29 @@ self.update = async function (req, res){
 
 }
 
+
+self.getUserAndAccount = async function(req, res) {
+    try {
+        const {usuario: userName }= req.params;
+
+        const user = await usuario.findOne({
+            where: { usuario: userName },
+            //include: [{ model: cuenta, as: 'cuenta' }]
+        });
+
+        const account =  await cuenta.findOne({
+            where: { usuario: userName}
+        });
+
+        if (!user || !account) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        return res.status(200).json({ usuario: user , cuenta: account});
+    } catch (error) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+
 module.exports = self;

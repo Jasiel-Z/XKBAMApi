@@ -28,11 +28,13 @@ self.login = async function(req, res){
         token = GeneraToken(account.correo, account.usuario, role.nombre)
 
         return res.status(200).json({
+            nombre: account.nombre,        
             correo: account.correo,
-            nombre: account.usuario,
-            rol: role.nombre,
+            usuario: account.usuario,
+            rol: account.idRol,
             jwt: token
         })
+
     }catch(error){
         return res.status(500).json('Error interno del servidor');
     }

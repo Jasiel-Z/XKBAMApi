@@ -1,16 +1,17 @@
 const router = require('express').Router()
 const direcciones = require('../controllers/direcciones.controller')
-const Authorize = require('../middlewares/autenticacion');
 const { validateAddress } = require('../validations/addressvalidation');
 
+// Ruta para obtener todas las direcciones de un usuario
+router.get('/:usuario', direcciones.getAll);
 
-router.get('/:usuario', Authorize('Cliente'),direcciones.getAll);
+// Ruta para crear una nueva dirección
+router.post('/', validateAddress, direcciones.create);
 
-router.post('/', Authorize('Cliente'),validateAddress,direcciones.create);
+// Ruta para actualizar una dirección existente
+router.put('/:idDireccion', direcciones.update);
 
-router.put('/:idDireccion', Authorize('Cliente'),direcciones.update);
-
-router.delete('/:idDireccion', Authorize('Cliente'),direcciones.delete);
-
+// Ruta para eliminar una dirección
+router.delete('/:idDireccion', direcciones.delete);
 
 module.exports = router;

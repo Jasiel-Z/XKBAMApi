@@ -1,13 +1,13 @@
-POST http://localhost:3000/api/cuentas
+POST http://localhost:3000/api/cuentasbancarias
 Content-Type: application/json
 
 {
-    "estado": "Veracruz",
-    "municipio": "Xalapa",
-    "codigoPostal": "91231",
-    "calle": "16 de Septiembre",
-    "numeroExterno": 22,
-    "usuario": "JasielMaster"
+    "numeroTarjeta": "4111111111111111",
+    "titular": "Juan Perez",
+    "fechaExpiracion": "2025-12-31",
+    "cvv": "123",
+    "usuario": "diddy1"
 }
+
 
 ###
