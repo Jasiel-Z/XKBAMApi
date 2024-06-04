@@ -1,5 +1,5 @@
 const { check, validationResult } = require('express-validator');
-const { usuario } = require('../models');
+const { usuario, tarjetabancaria } = require('../models');
 
 const validateAccount = [
     check('numeroTarjeta')

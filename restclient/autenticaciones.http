@@ -8,7 +8,14 @@ Content-Type: application/json
 
 }
 ###
+POST  http://localhost:3000/api/autenticacion
+Content-Type: application/json
 
+{
+    "correo": "cris990077@hotmail.com",
+    "contrasena": "CrisCris8"
+}
+###
 
 POST  http://localhost:3000/api/autenticacion
 Content-Type: application/json

@@ -1,21 +1,29 @@
 syntax = "proto3";
 
+service MultimediaService {
+    rpc uploadMultimedia(stream UploadMultimediaRequest) returns (UploadMultimediaResponse);
+    rpc getMultimedia(GetMultimediaRequest) returns (GetMultimediaResponse);
+    rpc generateReport(GenerateReportRequest) returns (GenerateReportResponse);
+}
+
 message GenerateReportRequest {
     string start_date = 1;
     string end_date = 2;
 }
 
-message GeneraterReportResponse {
+message GenerateReportResponse {
     bytes pdf_data = 1;
 }
 
 message UploadMultimediaRequest {
-    string item_id = 1;
-    string nombre = 2;
-    bytes photo_data = 3;
+    oneof request {
+        string item_id = 1;
+        string nombre = 2;
+        bytes photo_data = 3;
+    }
 }
 
-message UploaMultimediaResponse {
+message UploadMultimediaResponse {
     string response = 1;
 }
 
@@ -25,12 +33,4 @@ message GetMultimediaRequest {
 
 message GetMultimediaResponse {
     bytes photo_data = 1;
-}
-
-service MultimediaService {
-    rpc uploadMultimedia (UploadMultimediaRequest) returns (UploaMultimediaResponse);
-
-    rpc getMultimedia (GetMultimediaRequest) returns (stream GetMultimediaResponse);
-
-    rpc generateSalesReport (GenerateReportRequest) returns (GeneraterReportResponse);
 }

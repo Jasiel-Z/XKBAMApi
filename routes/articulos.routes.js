@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const articulos = require('../controllers/articulos.controller');
+const { validateItem } = require('../validations/itemvalidation');
+const Authorize = require('../middlewares/autenticacion');
+
 
 // Crear un nuevo artículo
-router.post('/', articulos.create);
+router.post('/', Authorize('Administrador'), validateItem, articulos.create);
 
 // Actualizar un artículo por su código
 router.put('/:codigoArticulo', articulos.update);

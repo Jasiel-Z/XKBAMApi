@@ -5,6 +5,8 @@ const { Sequelize, Op } = require('sequelize');
 const { multimedia, compra, articulocompra } = require('./models');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const path = require('path'); // Asegúrate de requerir el módulo 'path'
+
 const PROTO_PATH = "./proto/multimedia.proto"
 const Chart = require('chart.js');
 
@@ -27,21 +29,47 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
     console.log(`Servidor GRPC en ejecución en el puerto ${process.env.GRPC_PORT}`)
 });
 
-async function uploadMultimediaImpl(call, callback) {
-    const { idarticulo, nombre, contenido } = call.request;
-    try {
-        const newPhoto = await multimedia.create({
-            idarticulo: idarticulo,
-            nombre: nombre,
-            contenido: contenido
-        });
-        callback(null, { response: "Multimedia subida exitosamente" });
-    } catch (err) {
-        console.error(err);
-        callback({ code: grpc.status.INTERNAL, message: "Error al guardar la multimedia" });
-    }
-}
+ function uploadMultimediaImpl(call, callback) {
+    let item_id, nombreArchivo;
+    let tempFilePath;
 
+    call.on('data', (UploadMultimediaRequest) => {
+        if (UploadMultimediaRequest.item_id) {
+            item_id = UploadMultimediaRequest.request.item_id;
+            console.log("Received item_id:", item_id);
+        } else if (UploadMultimediaRequest.request.nombre) {
+            nombreArchivo = UploadMultimediaRequest.nombre;
+            console.log("Received nombre:", nombreArchivo);
+            tempFilePath = `./uploads/${nombreArchivo}`;
+        } else if (UploadMultimediaRequest.request.photo_data) {
+            fs.appendFileSync(tempFilePath, UploadMultimediaRequest.photo_data);
+            process.stdout.write('.');
+        }
+    }).on('end', async () => {
+        console.log('\nEnvío de datos terminado.');
+
+        try {
+            const photo_data = fs.readFileSync(tempFilePath);
+            fs.unlinkSync(tempFilePath);
+
+            const newPhoto = await multimedia.create({
+                nombre: nombreArchivo,
+                contenido: photo_data,
+                codigoArticulo: item_id
+            });
+
+            callback(null, { response: "Multimedia subida exitosamente" });
+        } catch (err) {
+            console.error(err);
+            callback({ code: grpc.status.INTERNAL, message: "Error al guardar la multimedia" });
+        }
+    });
+
+    call.on('error', (error) => {
+        console.error("Error receiving data:", error);
+        callback({ code: grpc.status.INTERNAL, message: "Error al recibir la multimedia" });
+    });
+}
 
 async function getMultimediaImpl(call) {
     const { item_id } = call.request;
