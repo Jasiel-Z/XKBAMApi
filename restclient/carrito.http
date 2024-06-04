@@ -3,10 +3,19 @@ POST http://localhost:3000/api/carritos/articulo
 Content-Type: application/json
 
 {
-  "codigoArticulo": "ART04",
-  "cantidadArticulo": 2,
-  "idTalla": 2,
+  "codigoArticulo": "ART03",
+  "cantidadArticulo": 7,
+  "idTalla": 3,
   "idCarrito": 2
+}
+
+### Actualizar la cantidad de un artículo en el carrito
+PUT http://localhost:3000/api/carritos/cantidad
+Content-Type: application/json
+
+{
+  "idArticuloCarrito": 1,
+  "cantidadArticulo": 3
 }
 
 ###
@@ -14,3 +23,6 @@ GET http://localhost:3000/api/carritos/2
 
 ###
 GET http://localhost:3000/api/carritos/carritousuario/CrisCris
+
+###
+DELETE http://localhost:3000/api/carritos/vaciar/1

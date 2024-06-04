@@ -13,4 +13,8 @@ router.get('/:idCarrito', carritos.getCartItemsByCartId);
 
 router.get('/carritousuario/:usuario', carritos.getCartIdByUserId);
 
+router.put('/cantidad', carritos.updateCartItemQuantity);
+
+router.delete('/vaciar/:idArticuloCarrito', carritos.deleteCartItem);
+
 module.exports = router;
