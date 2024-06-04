@@ -118,3 +118,27 @@ Content-Type: application/json
 }
 
 ###
+ POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "usuario": {      
+        "usuario": "diddyc",
+        "nombre": "diddy",
+        "apellidoPaterno": "d",
+        "apellidoMaterno": "d",
+        "genero": 1
+        
+    },
+    "cuenta": {
+        "correo": "diddy@hotmail.com",
+        "contrasena": "d",
+        "idRol": 2
+    }
+}
+
+###
+GET http://localhost:3000/api/usuarios/diddy1
+
+
+###
