@@ -59,7 +59,6 @@ self.updateUserAndAccount = async function (req, res) {
         const { nombre, apellidoPaterno, apellidoMaterno, genero } = userData;
         const { contrasena, correo, idRol } = accountData;
 
-        // Buscar el usuario y la cuenta en la base de datos
         const user = await usuario.findOne({ where: { usuario: userName }, transaction: t });
         const account = await cuenta.findOne({ where: { usuario: userName }, transaction: t });
 
@@ -68,7 +67,6 @@ self.updateUserAndAccount = async function (req, res) {
             return res.status(404).json({ message: 'Usuario o cuenta no encontrados' });
         }
 
-        // Actualizar los datos del usuario
         await user.update({
             nombre: nombre || user.nombre,
             apellidoPaterno: apellidoPaterno || user.apellidoPaterno,
@@ -76,7 +74,6 @@ self.updateUserAndAccount = async function (req, res) {
             genero: genero || user.genero
         }, { transaction: t });
 
-        // Actualizar los datos de la cuenta
         let hashedPassword = account.contrasena;
         if (contrasena) {
             hashedPassword = await bcrypt.hash(contrasena, 10);
@@ -107,7 +104,6 @@ self.getUserAndAccount = async function(req, res) {
 
         const user = await usuario.findOne({
             where: { usuario: userName },
-            //include: [{ model: cuenta, as: 'cuenta' }]
         });
 
         const account =  await cuenta.findOne({
