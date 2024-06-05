@@ -15,9 +15,21 @@ const userSchema = Joi.object({
     }),
     genero: Joi.number().integer().required().messages({
         'any.required': 'El género es un campo obligatorio'
+    }),
+    cuenta: Joi.object({
+        correo: Joi.string().required().email().messages({
+            'any.required': 'El correo es obligatorio',
+            'string.email': 'El formato del correo no es válido'
+        }),
+        contrasena: Joi.string().required().messages({
+            'any.required': 'La contraseña es obligatoria'
+        }),
+        idRol: Joi.number().integer().required().messages({
+            'any.required': 'El rol es obligatorio'
+        })
+    }).required().messages({
+        'any.required': 'Los datos de la cuenta son obligatorios'
     })
-
 });
 
-
-module.exports = { userSchema }
+module.exports = { userSchema };

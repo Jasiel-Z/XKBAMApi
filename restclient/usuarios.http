@@ -118,7 +118,25 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/usuarios/diddy1
+GET http://localhost:3000/api/usuarios/prueba
 
 
 ###
+PUT http://localhost:3000/api/usuarios/diddyc
+Content-Type: application/json
+
+{
+    "usuario": {      
+        "usuario": "diddyprueba",
+        "nombre": "diddyduex",
+        "apellidoPaterno": "d",
+        "apellidoMaterno": "d",
+        "genero": 2
+        
+    },
+    "cuenta": {
+        "correo": "diddy@hotmail.com",
+        "contrasena": "a",
+        "idRol": 1
+    }
+}
