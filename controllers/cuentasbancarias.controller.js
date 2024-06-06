@@ -17,7 +17,7 @@ self.create = async function (req, res){
         });
         return res.status(201).json(newaccount);
     }catch (error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 
@@ -38,7 +38,7 @@ self.update = async function(req,res){
         return res.status(204).json(useraccount)
 
     }catch(error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 
@@ -60,7 +60,7 @@ self.delete = async function(req, res){
         return res.status(404).json({message: 'Error al intentar borrar la cuenta bancaria'});
 
     }catch(error){
-        res.status(500).json({error: error.message });
+        res.status(500).json({error: 'Error interno del servidor' });
     }
 }
 
@@ -75,7 +75,7 @@ self.getAll = async function(req, res){
         
         return res.status(200).json(accounts);
     }catch (error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 

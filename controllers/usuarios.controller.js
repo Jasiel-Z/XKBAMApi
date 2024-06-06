@@ -46,7 +46,7 @@ self.create = async function (req, res){
 
     }catch (error){
         await t.rollback();
-        return res.status(500).json({ error: error.message});
+        return res.status(500).json({ error: 'Error interno del servidor'});
     }
 }
 

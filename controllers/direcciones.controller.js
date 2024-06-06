@@ -21,7 +21,7 @@ self.create = async function (req,res){
         });
         return res.status(201).json(newaddress);
     }catch(error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 
@@ -41,7 +41,7 @@ self.update = async function(req, res){
 
         return res.status(204).json(useraddress);
     }catch(error){
-        res.status(500).json({error: error.message});
+        res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 
@@ -57,7 +57,7 @@ self.getAll = async function(req, res){
         
         return res.status(200).json(addresses);
     }catch (error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 }
 
@@ -78,7 +78,7 @@ self.delete = async function(req, res){
             return res.status(404).json({message: 'Error al intentar borrar la dirección'});
 
     }catch(error){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: 'Error interno del servidor'});
     }
 
 

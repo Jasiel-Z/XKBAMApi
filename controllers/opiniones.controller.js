@@ -18,7 +18,7 @@ self.create = async function(req, res){
         });
         return res.status(201).json(newcomment);    
     }catch(error){
-        return res.status(500).json({error: error.message})
+        return res.status(500).json({error: 'Error interno del servidor'})
     }
 }
 
