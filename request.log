@@ -170,3 +170,10 @@
 {"level":"info","message":"POST /api/articulos","timestamp":"2024-06-04T04:54:05.756Z"}
 {"level":"info","message":"POST /api/articulos","timestamp":"2024-06-04T05:01:42.063Z"}
 {"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-04T15:29:35.726Z"}
+{"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-06T19:14:23.909Z"}
+{"level":"info","message":"POST /api/usuarios","timestamp":"2024-06-06T20:33:12.368Z"}
+{"level":"info","message":"POST /api/autenticacion","timestamp":"2024-06-06T20:33:33.413Z"}
+{"level":"info","message":"POST /api/articulos","timestamp":"2024-06-06T20:34:25.186Z"}
+{"level":"info","message":"POST /api/articulos","timestamp":"2024-06-06T20:35:04.260Z"}
+{"level":"info","message":"POST /api/articulos","timestamp":"2024-06-06T20:35:27.673Z"}
+{"level":"info","message":"POST /api/articulos","timestamp":"2024-06-06T20:35:34.116Z"}

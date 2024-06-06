@@ -33,7 +33,6 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
     let itemid, nombreArchivo, chunk;
     let tempFilePath;
 
-
     call.on('data', (UploadMultimediaRequest) => {
         if (UploadMultimediaRequest.item) {
             itemid = UploadMultimediaRequest.item;
@@ -50,9 +49,7 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
         }
     }).on('end', async () => {
         console.log('\nEnvío de datos terminado.');
-        callback(null, { nombre: nombreArchivo });
-
-        /*
+        
         try {
             const photo_data = fs.readFileSync(tempFilePath);
             fs.unlinkSync(tempFilePath);
@@ -63,16 +60,14 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
                 codigoArticulo: itemid
             });
 
-
             callback(null, { response: "Multimedia subida exitosamente" });
-
 
         } catch (err) {
             console.error(err);
             callback({ code: grpc.status.INTERNAL, message: "Error al guardar la multimedia" });
 
         }
-                                */
+                                
 
     });
 

@@ -14,6 +14,8 @@ var corsOptions = {
     methods: "GET, PUT,POST,DELETE"
 }
 
+app.use(cors(corsOptions));
+
 app.use((req, res, next) => {
     requestLogger.info(`${req.method} ${req.url}`);
     next();
