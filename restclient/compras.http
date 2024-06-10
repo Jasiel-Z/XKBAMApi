@@ -1,0 +1,42 @@
+POST http://localhost:3000/api/compras
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiamFzaWVsemF2QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6Ikphc2llbE1hc3RlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNsaWVudGUiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3NzE1NTgyLCJleHAiOjE3MTc3MTczODJ9.fW_36YOVGrjhpvSD3QoO5_9TLVRdj7didoIY7S7zFMU
+
+{
+    "usuario": "JasielMaster",
+    "estado": "En Proceso",
+    "articulos": [
+        {
+            "cantidadArticulo": 3,
+            "precioUnitario": 20,
+            "precioFinal": 40,
+            "codigoArticulo": "XKART01",
+            "idTalla": 1
+        },
+        {
+            "cantidadArticulo": 3,
+            "precioUnitario": 15,
+            "precioFinal": 15,
+            "codigoArticulo": "XKART02",
+            "idTalla": 2
+        }
+    ]
+}
+
+###
+POST http://localhost:3000/api/compras
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiamFzaWVsemF2QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6Ikphc2llbE1hc3RlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNsaWVudGUiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3NzE3NzA0LCJleHAiOjE3MTc3MTk1MDR9.kH7qmf8JLlNTE9vI2S5f9mZR5vKuKXPXR2k4yg5UmIw
+
+{
+    "usuario": "JasielMaster",
+    "estado": "En Proceso",
+    "articulos": [
+        {
+            "cantidadArticulo": 3,
+            "codigoArticulo": "XKART03",
+            "idTalla": 1
+        }
+    ]
+}
+

@@ -1,22 +1,17 @@
-const {check, validateResult} = require('express-validator');
-const {articulo, usuario, talla, color} =  require('../models');
+const {check, validationResult} = require('express-validator');
+const {articulo, usuario, talla} =  require('../models');
 
 const validatePurchase = [
     check('usuario')
         .notEmpty().withMessage('Campo vacío')
         .isString().withMessage('Tipo de dato no aceptado')
         .trim().escape()
-        .custom(async (usuario) => {
-            const user = await usuario.findByPk(usuario);
+        .custom(async (usuarioId) => {
+            const user = await usuario.findByPk(usuarioId);
             if (!user) {
                 return Promise.reject('Usuario no encontrado');
             }
         }),
-
-    check('estado')
-        .notEmpty().withMessage('Campo vacío')
-        .isString().withMessage('Tipo de dato no aceptado')
-        .trim().escape(),
 
     check('articulos').isArray().withMessage('Se espera una lista de artículos'),
 
@@ -33,18 +28,8 @@ const validatePurchase = [
 
     check('articulos.*.cantidadArticulo')
         .notEmpty().withMessage('Campo vacío')
-        .isInt().withMessage('Tipo de dato no aceptado')
+        .isInt({min: 1,max: 10}).withMessage('La cantidad aceptada de un artículo por compra es de 1 a 10')
         .toInt(),
-
-    check('articulos.*.precioUnitario')
-        .notEmpty().withMessage('Campo vacío')
-        .isFloat().withMessage('Tipo de dato no aceptado')
-        .toFloat(),
-
-    check('articulos.*.precioFinal')
-        .notEmpty().withMessage('Campo vacío')
-        .isFloat().withMessage('Tipo de dato no aceptado')
-        .toFloat(),
 
     check('articulos.*.idTalla')
         .notEmpty().withMessage('Campo vacío')

@@ -7,12 +7,13 @@ service MultimediaService {
 }
 
 message GenerateReportRequest {
-    string start_date = 1;
-    string end_date = 2;
+    string startDate = 1;
+    string endDate = 2;
 }
 
 message GenerateReportResponse {
-    bytes pdf_data = 1;
+    bytes data = 1;
+    string name = 2;
 }
 
 message UploadMultimediaRequest {
