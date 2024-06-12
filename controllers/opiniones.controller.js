@@ -10,7 +10,7 @@ self.create = async function(req, res){
             return res.status(400).json({errors: errors.array()});
 
         const { codigoArticulo, comentario, calificacion, usuario } =  req.body;
-        const newcomment = await comentario.create( {
+        const newcomment = await opinion.create( {
             codigoArticulo: codigoArticulo,
             comentario: comentario,
             calificacion: calificacion,
@@ -21,5 +21,19 @@ self.create = async function(req, res){
         return res.status(500).json({error: error.message})
     }
 }
+
+self.getOpinionsByArticleCode = async function(req, res) {
+    try {
+        const { codigoArticulo } = req.params;
+
+        const opinions = await opinion.findAll({
+            where: { codigoArticulo: codigoArticulo }
+        });
+
+        return res.status(200).json(opinions);
+    } catch (error) {
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
 
 module.exports = self;

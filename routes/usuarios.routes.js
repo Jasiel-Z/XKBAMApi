@@ -20,4 +20,6 @@ router.post('/',validateUser, usuarios.create)
 router.get('/:usuario',usuarios.getUserAndAccount)
 router.put('/:usuario', usuarios.updateUserAndAccount);
 
+router.get('/:usuario',usuarios.getUserAndAccount)
+
 module.exports = router;

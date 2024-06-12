@@ -75,19 +75,18 @@ self.getByCategory = async function(req, res){
 }
 
 self.getByTerm = async function(req, res){
-    try{
-        const { q } = req.query;
+    try {
+        const { termino } = req.params;
         const items = await articulo.findAll({
             where: {
-                [Op.or]: [
-                    { nombre: { [Op.like]: `%${q}%` } },
-                    { descripcion: { [Op.like]: `%${q}%` } }
-                ]
+                nombre: {
+                    [Op.like]: `%${termino}%`
+                }
             }
         });
 
         return res.status(200).json(items);
-    } catch(error) {
+    } catch (error) {
         return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }

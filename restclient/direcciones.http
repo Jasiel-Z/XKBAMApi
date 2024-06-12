@@ -5,9 +5,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hc
 {
     "estado": "Veracruz",
     "municipio": "Xalapa",
-    "codigoPostal": "91231",
-    "calle": "16 de Septiembre",
-    "numeroExterno": 22,
-    "usuario": "JasielMaster"
+    "codigoPostal": "91158",
+    "calle": "Plaza de armas",
+    "numeroExterno": 24,
+    "usuario": "CrisCris2"
 }
+
 ###
+// Ruta para actualizar una dirección existente
+GET http://localhost:3000/api/direcciones/CrisCris2

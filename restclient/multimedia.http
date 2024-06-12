@@ -1,0 +1,31 @@
+### Crear Multimedia
+POST http://localhost:3000/api/multimedia
+Content-Type: application/json
+
+{
+    "nombre": "Nombre del multimedia",
+    "contenido": "Contenido del multimedia",
+    "codigoArticulo": "Código del artículo"
+}
+
+### Actualizar Multimedia
+PUT http://localhost:3000/api/multimedia/:idMultimedia
+Content-Type: application/json
+
+{
+    "nombre": "Nuevo nombre del multimedia",
+    "contenido": "Nuevo contenido del multimedia",
+    "codigoArticulo": "Nuevo código del artículo"
+}
+
+### Eliminar Multimedia
+DELETE http://localhost:3000/api/multimedia/6
+
+### Obtener todos los elementos Multimedia
+GET http://localhost:3000/api/multimedia
+
+### Obtener Multimedia por ID
+GET http://localhost:3000/api/multimedia/1
+
+### Obtener Multimedia por Código de Artículo
+GET http://localhost:3000/api/multimedia/codigo/ART123
