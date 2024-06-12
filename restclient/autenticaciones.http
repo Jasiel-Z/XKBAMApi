@@ -21,7 +21,8 @@ POST  http://localhost:3000/api/autenticacion
 Content-Type: application/json
 
 {
-    "correo": "jasielz@gmail.com",
-    "contrasena": "QWERTY123"
+    "correo": "jasielzav@gmail.com",
+    "contrasena": "123"
 
 }
+

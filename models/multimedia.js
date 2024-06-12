@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     contenido: {
-      type: DataTypes.BLOB('medium'),
+      type: DataTypes.BLOB('long'),
       allowNull: false
     },
     codigoArticulo: {

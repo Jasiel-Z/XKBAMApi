@@ -35,6 +35,7 @@ self.login = async function(req, res){
             rol: account.idRol,
             jwt: token
         })
+
     }catch(error){
         return res.status(500).json('Error interno del servidor');
     }

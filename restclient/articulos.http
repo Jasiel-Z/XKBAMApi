@@ -3,12 +3,12 @@ POST http://localhost:3000/api/articulos
 Content-Type: application/json
 
 {
-  "codigoArticulo": "ART05",
-  "nombre": "Articulo 5",
-  "descripcion": "Descripción del Artículo 5",
+  "codigoArticulo": "ART08",
+  "nombre": "Articulo 4",
+  "descripcion": "Descripción del Artículo 8",
   "precio": 500.0,
   "idColor": 5,
-  "idCategoria": 1
+  "idCategoria": 4
 }
 
 ### Actualizar un artículo por su código
@@ -33,7 +33,7 @@ GET http://localhost:3000/api/articulos
 GET http://localhost:3000/api/articulos/categoria/1
 
 ### Buscar artículos por término en nombre o descripción
-GET http://localhost:3000/api/articulos/search?q=Articulo
+GET http://localhost:3000/api/articulos/search/Articulo 1
 
 ### Obtener un artículo por su código
 GET http://localhost:3000/api/articulos/ART123

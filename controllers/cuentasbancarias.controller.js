@@ -1,5 +1,7 @@
 const { tarjetabancaria, usuario, Sequelize } = require('../models');
 const { validationResult } = require('express-validator');
+const { tarjetabancaria } = require('../models');
+
 
 let self = {}
 

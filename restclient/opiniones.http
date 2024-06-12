@@ -1,0 +1,12 @@
+POST http://localhost:3000/api/opiniones
+Content-Type: application/json
+
+{
+  "codigoArticulo": "ART123",
+  "comentario": "La neta no jaja",
+  "calificacion": 1,
+  "usuario": "CrisCris"
+}
+
+###
+GET http://localhost:3000/api/opiniones/ART123

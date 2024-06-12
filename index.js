@@ -32,6 +32,7 @@ app.use("/api/opiniones", require('./routes/opiniones.routes'))
 app.use("/api/compras", require('./routes/compras.routes'))
 app.use("/api/autenticacion", require('./routes/autenticacion.routes'))
 app.use("/api/articulos", require('./routes/articulos.routes'))
+app.use("/api/multimedia", require('./routes/multimedia.routes'))
 
 
 

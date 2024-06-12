@@ -4,13 +4,16 @@ const { validationResult } = require('express-validator');
 
 let self = {}
 
-self.create = async function (req,res){
-    try{
+self.create = async function (req, res) {
+    try {
         const errors = validationResult(req);
-        if(!errors.isEmpty())
-            return res.status(400).json({errors: errors.array()});
+        if (!errors.isEmpty()) {
+            // Registrar los errores de validación
+            console.log("Errores de validación:", errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
 
-        const {estado, municipio, codigoPostal, calle, numeroExterno, usuario} = req.body;
+        const { estado, municipio, codigoPostal, calle, numeroExterno, usuario } = req.body;
         const newaddress = await direccion.create({
             estado,
             municipio,
