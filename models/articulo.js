@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       articulo.belongsToMany(models.compra, {through: 'articulocompra', foreignKey: 'codigoArticulo'})
       articulo.belongsToMany(models.carrito, {through: 'articulocarrito', foreignKey: 'codigoArticulo'})
       articulo.hasMany(models.multimedia, {foreignKey: 'codigoArticulo'})
+      articulo.hasMany(models.articulocompra, { foreignKey: 'codigoArticulo' })
+
     }
   }
   articulo.init({

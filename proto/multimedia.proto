@@ -2,7 +2,6 @@ syntax = "proto3";
 
 service MultimediaService {
     rpc uploadMultimedia(stream UploadMultimediaRequest) returns (UploadMultimediaResponse);
-    rpc getMultimedia(GetMultimediaRequest) returns (GetMultimediaResponse);
     rpc generateReport(GenerateReportRequest) returns (GenerateReportResponse);
 }
 
@@ -26,12 +25,4 @@ message UploadMultimediaRequest {
 
 message UploadMultimediaResponse {
     string response = 1;
-}
-
-message GetMultimediaRequest {
-    string item_id = 1;
-}
-
-message GetMultimediaResponse {
-    bytes photo_data = 1;
 }

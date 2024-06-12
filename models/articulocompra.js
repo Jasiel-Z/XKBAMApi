@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       articulocompra.belongsTo(models.carrito, { foreignKey: 'idCarrito', targetKey: 'idCarrito' });
-      articulocompra.belongsTo(models.compra, { foreignKey: 'idCompra' });
+      articulocompra.belongsTo(models.compra, { foreignKey: 'idCompra', targetKey: 'idCompra' });
+      articulocompra.belongsTo(models.articulo, { foreignKey: 'codigoArticulo', targetKey: 'codigoArticulo' });
 
     }
   }

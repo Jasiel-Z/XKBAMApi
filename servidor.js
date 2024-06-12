@@ -8,6 +8,7 @@ const fs = require('fs');
 const PROTO_PATH = "./proto/multimedia.proto"
 const { createCanvas } = require('canvas');
 const { Console } = require("console");
+const path = require('path');
 
 
 
@@ -19,7 +20,6 @@ const multiProto = grpc.loadPackageDefinition(packageDefinition);
 
 const server = new grpc.Server();
 server.addService(multiProto.MultimediaService.service, {
-    getMultimedia: getMultimediaImpl,
     uploadMultimedia: uploadMultimediaImpl,
     generateReport: generateSalesReportImpl
 
@@ -77,29 +77,9 @@ server.bindAsync(`localhost:${process.env.GRPC_PORT}`, grpc.ServerCredentials.cr
     });
 }
 
-async function getMultimediaImpl(call) {
-    const { item_id } = call.request;
-    try {
-        const photos = await Multimedia.findAll({ where: { idarticulo: item_id } });
-        if (photos.length === 0) {
-            call.emit('error', { code: grpc.status.NOT_FOUND, message: "No se encontraron fotos para el artículo" });
-            return;
-        }
-
-        photos.forEach(photo => {
-            call.write({ photo_data: photo.photo_data });
-        });
-        call.end();
-    } catch (err) {
-        console.error(err);
-        call.emit('error', { code: grpc.status.INTERNAL, message: "Error al recuperar las fotos" });
-    }
-}
-
 
 async function fetchSalesData(startDate, endDate) {
     try {
-        // Recuperar todas las compras dentro del rango de fechas especificado
         const sales = await compra.findAll({
             where: {
                 fechacompra: {
@@ -107,27 +87,33 @@ async function fetchSalesData(startDate, endDate) {
                 }
             }
         });
+        console.log('Compras recuperadas:', sales);
 
-        // Recuperar los artículos asociados a cada compra
-        const salesData = await Promise.all(sales.map(async (sale) => {
-            const items = await articulocompra.findAll({
-                where: {
-                    idCompra: sale.idCompra
-                },
-                include: [
-                    {
-                        model: articulo,
-                        as: 'articulo'
-                    }
-                ]
-            });
-
-            console.log('Artículos de la venta:', items.map(item => item.articulo.nombre));
-
-            return { sale, items };
-        }));
-
-        return salesData;
+    const salesData = await Promise.all(sales.map(async (sale) => {
+        const items = await articulocompra.findAll({
+          where: {
+            idCompra: sale.idCompra
+          },
+          attributes: ['idArticuloCompra', 'cantidadArticulo', 'precioUnitario', 'precioFinal', 'idCompra', 'idTalla'],
+          include: [
+            {
+              model: articulo,
+              as: 'articulo'
+            }
+          ]
+        });
+  
+        // Imprimir datos de cada compra y sus artículos asociados
+        console.log('Compra:', sale.dataValues);
+        console.log('Artículos de la compra:', items.map(item => item.dataValues));
+  
+        return { sale: sale.dataValues, items: items.map(item => item.dataValues) };
+      }));
+  
+      // Imprimir los elementos de salesData
+      console.log('Datos de ventas:', salesData);
+  
+      return salesData;
     } catch (error) {
         console.error('Error al recuperar los datos de ventas:', error);
         throw error;
@@ -139,18 +125,21 @@ function processSalesData(salesData) {
     const productsSold = {};
 
     salesData.forEach(sale => {
-        const saleDate = sale.fechacompra.toDateString();
+        const saleDateDB = new Date(sale.sale.fechaCompra);
+        const saleDate = saleDateDB.toDateString();
         if (!salesByDate[saleDate]) {
             salesByDate[saleDate] = 0;
         }
-        salesByDate[saleDate] += parseFloat(sale.montofinal);
+        salesByDate[saleDate] += parseFloat(sale.sale.montoFinal);
 
-        sale.articulos.forEach(item => {
-            const productName = item.nombre;
-            if (!productsSold[productName]) {
-                productsSold[productName] = 0;
+        sale.items.forEach(item => {
+            const productCode = item.articulo.codigoArticulo; // Assuming 'codigo' is the field for product code
+            const productName = item.articulo.nombre;
+            const productPrice = item.articulo.precio; // Assuming 'precioUnitario' is the field for product price
+            if (!productsSold[productCode]) {
+                productsSold[productCode] = { name: productName, quantity: 0, price: productPrice };
             }
-            productsSold[productName] += parseInt(item.cantidadarticulo);
+            productsSold[productCode].quantity += parseInt(item.cantidadArticulo);
         });
     });
 
@@ -159,8 +148,13 @@ function processSalesData(salesData) {
 
 function generateBarChart(canvas, data) {
     const ctx = canvas.getContext('2d');
+    ctx.dpi = 600;
     const labels = Object.keys(data);
     const values = Object.values(data);
+
+    // Incrementar la resolución del canvas
+    canvas.width = 1600;
+    canvas.height = 800;
 
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -168,12 +162,85 @@ function generateBarChart(canvas, data) {
     const barWidth = canvas.width / values.length;
     const maxValue = Math.max(...values);
 
+    ctx.font = '28px Arial';
+
     values.forEach((value, index) => {
-        const barHeight = (value / maxValue) * (canvas.height - 50);
+        const barHeight = (value / maxValue) * (canvas.height - 100);
         ctx.fillStyle = 'rgba(75, 192, 192, 1)';
         ctx.fillRect(index * barWidth, canvas.height - barHeight, barWidth - 10, barHeight);
         ctx.fillStyle = 'black';
-        ctx.fillText(labels[index], index * barWidth, canvas.height - 10);
+
+        ctx.fillText(value.toString(), index * barWidth + barWidth / 2 - 20, canvas.height - barHeight - 10);
+        ctx.fillText(labels[index], index * barWidth, canvas.height - 30);
+    });
+
+    return canvas.toBuffer('image/png');
+}
+
+function generateSalesByDateChart(canvas,salesByDate) {
+    const ctx = canvas.getContext('2d');
+    ctx.dpi = 600;
+    const labels = Object.keys(salesByDate);
+    const values = Object.values(salesByDate);
+
+    canvas.width = 1600;
+    canvas.height = 800;
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = canvas.width / values.length;
+    const maxValue = Math.max(...values);
+
+    ctx.font = '28px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+
+    values.forEach((value, index) => {
+        const barHeight = (value / maxValue) * (canvas.height - 100);
+        ctx.fillStyle = 'rgba(75, 192, 192, 1)';
+        ctx.fillRect(index * barWidth, canvas.height - barHeight, barWidth - 10, barHeight);
+        ctx.fillStyle = 'black';
+
+        const barCenter = index * barWidth + barWidth / 2;
+
+        ctx.fillText(`$${value.toFixed(2)} MXN`, barCenter, canvas.height - barHeight - 10);
+        ctx.fillText(labels[index], barCenter, canvas.height - 50);
+    });
+
+    return canvas.toBuffer('image/png');
+}
+
+function generateProductsSoldChart(canvas,productsSold) {
+    const ctx = canvas.getContext('2d');
+    ctx.dpi = 600;
+    const labels = Object.keys(productsSold).map(productCode =>`  ${productCode}`);
+    const values = Object.values(productsSold).map(product => product.quantity * product.price);
+
+    // Incrementar la resolución del canvas
+    canvas.width = 1600;
+    canvas.height = 800;
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = canvas.width / values.length;
+    const maxValue = Math.max(...values);
+
+    ctx.font = '28px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+
+    values.forEach((value, index) => {
+        const barHeight = (value / maxValue) * (canvas.height - 100);
+        ctx.fillStyle = 'rgba(75, 192, 192, 1)';
+        ctx.fillRect(index * barWidth, canvas.height - barHeight, barWidth - 10, barHeight);
+        ctx.fillStyle = 'black';
+
+        const barCenter = index * barWidth + barWidth / 2;
+
+        ctx.fillText(`$${value.toFixed(2)} MXN`, barCenter, canvas.height - barHeight - 10);
+        ctx.fillText(labels[index], barCenter, canvas.height - 50);
     });
 
     return canvas.toBuffer('image/png');
@@ -182,13 +249,16 @@ function generateBarChart(canvas, data) {
 async function generatePDF(salesByDate, productsSold) {
     const doc = new PDFDocument();
     let buffers = [];
+    const pdfPath = path.join(__dirname, 'reporte_ventas.pdf');
+
     doc.on('data', buffers.push.bind(buffers));
     doc.on('end', () => {
-        let pdfData = Buffer.concat(buffers);
-        fs.writeFileSync('reporte_ventas.pdf', pdfData);
+        const pdfData = Buffer.concat(buffers);
+        fs.writeFileSync(pdfPath, pdfData);
+        console.log('PDF guardado:', pdfPath);
     });
 
-    doc.fontSize(20).text('Reporte de Compras', { align: 'center' });
+    doc.fontSize(20).text('Reporte de Compras: Tienda en línea XKBAM', { align: 'center' });
     doc.moveDown();
 
     doc.fontSize(16).text('Ventas por Fecha:');
@@ -198,22 +268,50 @@ async function generatePDF(salesByDate, productsSold) {
 
     doc.moveDown();
     doc.fontSize(16).text('Productos Vendidos:');
-    for (const product in productsSold) {
-        doc.fontSize(12).text(`${product}: ${productsSold[product]} unidades`);
+    doc.moveDown();
+    const tableTop = doc.y;
+    const itemCodeX = 50;
+    const itemNameX = 150;
+    const itemQuantityX = 350;
+    const itemPriceX = 450;
+
+    doc.fontSize(12).text('Código', itemCodeX, tableTop);
+    doc.text('Nombre', itemNameX, tableTop);
+    doc.text('Cantidad Vendida', itemQuantityX, tableTop);
+    doc.text('Precio Unitario', itemPriceX, tableTop);
+
+    let yPosition = tableTop + 20;
+
+    for (const productCode in productsSold) {
+        const product = productsSold[productCode];
+        doc.fontSize(10).text(productCode, itemCodeX, yPosition);
+        doc.text(product.name, itemNameX, yPosition);
+        doc.text(product.quantity, itemQuantityX, yPosition);
+        doc.text(`$${product.price.toFixed(2)}`, itemPriceX, yPosition);
+        yPosition += 20;
     }
 
-    // Gráfica: ventas por fecha
-    const canvas1 = createCanvas(400, 200);
-    const barChart1 = generateBarChart(canvas1, salesByDate);
+    doc.addPage();
+    doc.fontSize(16).text('Gráfica: Ventas por Fecha:');
+    const canvas1 = createCanvas(800, 400); 
+    const barChart1 = generateSalesByDateChart(canvas1, salesByDate);
     doc.image(barChart1, { fit: [400, 200] });
-    doc.moveDown();
+    
 
-    // Gráfica: productos vendidos
-    const canvas2 = createCanvas(400, 200);
-    const barChart2 = generateBarChart(canvas2, productsSold);
+
+    doc.addPage();
+    doc.fontSize(16).text('Gráfica: Ventas por Producto:');
+    const canvas2 = createCanvas(800, 400); 
+    const barChart2 = generateProductsSoldChart(canvas2, productsSold);
     doc.image(barChart2, { fit: [400, 200] });
 
     doc.end();
+
+    return new Promise((resolve) => {
+        doc.on('end', () => {
+            resolve(Buffer.concat(buffers));
+        });
+    });
 }
 
 
@@ -224,38 +322,7 @@ async function generateSalesReportImpl(call, callback) {
         const salesData = await fetchSalesData(startDate, endDate);
         const { salesByDate, productsSold } = processSalesData(salesData);
 
-        // Generar el PDF y capturar el buffer en una promesa
-        const pdfBuffer = await new Promise((resolve, reject) => {
-            const doc = new PDFDocument();
-            let buffers = [];
-            doc.on('data', buffers.push.bind(buffers));
-            doc.on('end', () => resolve(Buffer.concat(buffers)));
-
-            doc.fontSize(20).text('Reporte de Compras', { align: 'center' });
-            doc.moveDown();
-            doc.fontSize(16).text('Ventas por Fecha:');
-            for (const date in salesByDate) {
-                doc.fontSize(12).text(`${date}: $${salesByDate[date]}`);
-            }
-            doc.moveDown();
-            doc.fontSize(16).text('Productos Vendidos:');
-            for (const product in productsSold) {
-                doc.fontSize(12).text(`${product}: ${productsSold[product]} unidades`);
-            }
-
-            // Gráfica: ventas por fecha
-            const canvas1 = createCanvas(400, 200);
-            const barChart1 = generateBarChart(canvas1, salesByDate);
-            doc.image(barChart1, { fit: [400, 200] });
-            doc.moveDown();
-
-            // Gráfica: productos vendidos
-            const canvas2 = createCanvas(400, 200);
-            const barChart2 = generateBarChart(canvas2, productsSold);
-            doc.image(barChart2, { fit: [400, 200] });
-
-            doc.end();
-        });
+        const pdfBuffer = await generatePDF(salesByDate, productsSold);
 
         // Enviar pdf
         callback(null, { data: pdfBuffer, name: `reporte_ventas_${new Date().toISOString()}.pdf` });
