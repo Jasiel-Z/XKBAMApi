@@ -4,7 +4,7 @@ const Authorize = require('../middlewares/autenticacion');
 
 
 //POST  api/usuarios
-router.post('/', Authorize('Cliente'),compras.create)
+router.post('/', compras.create);
 
 
 module.exports = router
