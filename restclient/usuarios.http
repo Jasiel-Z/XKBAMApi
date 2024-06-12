@@ -2,12 +2,12 @@
 Content-Type: application/json
 
 {
-  "usuario": "CrisCris",
-  "nombre": "Cristopher",
+  "usuario": "hjkhjkhjkhjkh",
+  "nombre": "hjkhjkhjkhjkhj",
   "apellidoPaterno": "Vazquez",
   "apellidoMaterno": "Villa",
   "genero": 1,
-  "contrasena": "CrisCris89",
+  "contrasena": "C",
   "correo": "cris990077@hotmail.com",
   "idRol": 1
 }
@@ -138,7 +138,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/usuarios/diddy1
+GET http://localhost:3000/api/usuarios/CrisCris
 
 
 ###

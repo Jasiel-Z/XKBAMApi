@@ -17,7 +17,7 @@ router.get('/', articulos.getAll);
 router.get('/categoria/:idCategoria', articulos.getByCategory);
 
 // Buscar artículos por término en nombre o descripción
-router.get('/search', articulos.getByTerm);
+router.get('/search/:termino', articulos.getByTerm);
 
 // Obtener un artículo por su código
 router.get('/:codigoArticulo', articulos.getById);
