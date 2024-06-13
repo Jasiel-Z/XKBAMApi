@@ -1071,3 +1071,8 @@
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:47:04.010Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:55:55.948Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:57:34.266Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T21:25:57.135Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/","user":"Usuario desconocido"},"timestamp":"2024-06-13T21:26:46.521Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/favicon.ico","user":"Usuario desconocido"},"timestamp":"2024-06-13T21:26:47.647Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T21:26:57.351Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/usuarios","user":"Usuario desconocido"},"timestamp":"2024-06-13T21:29:11.105Z"}

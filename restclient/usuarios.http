@@ -98,7 +98,7 @@ Content-Type: application/json
 ###
 
 
- POST http://localhost:3000/api/usuarios
+ POST http://192.168.56.106:3000/api/usuarios
 Content-Type: application/json
 
 {
