@@ -103,15 +103,14 @@ async function fetchSalesData(startDate, endDate) {
           ]
         });
   
-        // Imprimir datos de cada compra y sus artículos asociados
-        console.log('Compra:', sale.dataValues);
-        console.log('Artículos de la compra:', items.map(item => item.dataValues));
+
+        //console.log('Compra:', sale.dataValues);
+        //console.log('Artículos de la compra:', items.map(item => item.dataValues));
   
         return { sale: sale.dataValues, items: items.map(item => item.dataValues) };
       }));
   
-      // Imprimir los elementos de salesData
-      console.log('Datos de ventas:', salesData);
+      //console.log('Datos de ventas:', salesData);
   
       return salesData;
     } catch (error) {
@@ -133,9 +132,9 @@ function processSalesData(salesData) {
         salesByDate[saleDate] += parseFloat(sale.sale.montoFinal);
 
         sale.items.forEach(item => {
-            const productCode = item.articulo.codigoArticulo; // Assuming 'codigo' is the field for product code
+            const productCode = item.articulo.codigoArticulo; 
             const productName = item.articulo.nombre;
-            const productPrice = item.articulo.precio; // Assuming 'precioUnitario' is the field for product price
+            const productPrice = item.articulo.precio; 
             if (!productsSold[productCode]) {
                 productsSold[productCode] = { name: productName, quantity: 0, price: productPrice };
             }
@@ -152,7 +151,6 @@ function generateBarChart(canvas, data) {
     const labels = Object.keys(data);
     const values = Object.values(data);
 
-    // Incrementar la resolución del canvas
     canvas.width = 1600;
     canvas.height = 800;
 
@@ -217,7 +215,6 @@ function generateProductsSoldChart(canvas,productsSold) {
     const labels = Object.keys(productsSold).map(productCode =>`  ${productCode}`);
     const values = Object.values(productsSold).map(product => product.quantity * product.price);
 
-    // Incrementar la resolución del canvas
     canvas.width = 1600;
     canvas.height = 800;
 
