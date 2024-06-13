@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const articulos = require('../controllers/articulos.controller');
+const Authorize = require('../middlewares/autenticacion');
 
 // Crear un nuevo artículo
 router.post('/', articulos.create);
@@ -11,15 +12,15 @@ router.put('/:codigoArticulo', articulos.update);
 router.delete('/:codigoArticulo', articulos.delete);
 
 // Obtener todos los artículos
-router.get('/', articulos.getAll);
+router.get('/',Authorize('Cliente,Administrador'), articulos.getAll);
 
 // Obtener artículos por categoría
-router.get('/categoria/:idCategoria', articulos.getByCategory);
+router.get('/categoria/:idCategoria',Authorize('Cliente,Administrador'), articulos.getByCategory);
 
 // Buscar artículos por término en nombre o descripción
-router.get('/search/:termino', articulos.getByTerm);
+router.get('/search/:termino',Authorize('Cliente,Administrador'), articulos.getByTerm);
 
 // Obtener un artículo por su código
-router.get('/:codigoArticulo', articulos.getById);
+router.get('/:codigoArticulo',Authorize('Cliente,Administrador'), articulos.getById);
 
 module.exports = router;
