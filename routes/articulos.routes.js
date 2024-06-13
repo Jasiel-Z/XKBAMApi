@@ -8,13 +8,13 @@ const Authorize = require('../middlewares/autenticacion');
 router.post('/', Authorize('Administrador'), validateItem, articulos.create);
 
 // Actualizar un artículo por su código
-router.put('/:codigoArticulo', articulos.update);
+router.put('/:codigoArticulo', Authorize('Administrador'),articulos.update);
 
 // Eliminar un artículo por su código
 router.delete('/:codigoArticulo', articulos.delete);
 
 // Obtener todos los artículos
-router.get('/', articulos.getAll);
+router.get('/', Authorize('Administrador,Cliente'),articulos.getAll);
 
 // Obtener artículos por categoría
 router.get('/categoria/:idCategoria', articulos.getByCategory);

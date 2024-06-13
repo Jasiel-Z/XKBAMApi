@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 var corsOptions = {
-    origin:["http://192.168.56.1:3000", "http://192.168.56.1:8080"],
-    methods: "GET, PUT,POST,DELETE"
+    origin:["http://localhoss:3000", "http://localhost:8080"],
+    methods: "GET,PUT,POST,DELETE"
 }
 
 app.use(cors(corsOptions));

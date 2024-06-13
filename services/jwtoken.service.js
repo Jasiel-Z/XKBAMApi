@@ -11,7 +11,7 @@ const GeneraToken = (email, nombre, rol) => {
         'aud': "ClientesFeiJWT"
     },
         jwtSecret, {
-        expiresIn: '30m', 
+        expiresIn: '6m', 
     })
     return token;
 }
@@ -26,7 +26,7 @@ const TiempoRestanteToken = (req) => {
         const token = authHeader.split(' ')[1]
 
         //verifica si es token válido
-        const decodedToken = jwt.verify(token, jwSecret)
+        const decodedToken = jwt.verify(token, jwtSecret)
 
         //regresa el tiempo que le queda al token
         const time = (decodedToken.exp - (new Date().getTime() / 1000))

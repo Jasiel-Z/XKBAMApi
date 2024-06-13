@@ -1027,3 +1027,45 @@
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T02:45:26.709Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/articulos","user":"Usuario desconocido"},"timestamp":"2024-06-13T02:45:52.341Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Administrador","url":"/api/articulos","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T02:49:38.604Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T17:56:59.204Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/tiempo","user":"Usuario desconocido"},"timestamp":"2024-06-13T17:58:43.681Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:09:29.969Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T18:10:01.615Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T18:10:22.743Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T18:10:24.329Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:26:09.843Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:26:27.169Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/ART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:29:29.460Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/ART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:29:43.550Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/ART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:30:26.431Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:30:36.454Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:30:58.971Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:33:16.146Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/articulos","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:33:55.919Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:10.729Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:16.887Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:17.797Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:18.569Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:55.355Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:34:57.744Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Rol desconocido","url":"/api/articulos/XKART02","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:35:11.344Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:35:54.240Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:36:21.169Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:36:28.190Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:36:30.859Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:36:41.771Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:37:02.953Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/tiempo","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:37:10.619Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:37:18.036Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/tiempo","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:37:30.368Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:37:44.227Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/articulos","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:44:10.428Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/tiempo","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:44:24.186Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T18:44:47.054Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:45:07.956Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:45:59.320Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:46:21.523Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:46:40.497Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:46:46.348Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"PUT","role":"Administrador","url":"/api/articulos/XKART02","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:46:50.965Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Administrador","url":"/api/autenticacion/tiempo","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T18:47:04.010Z"}
