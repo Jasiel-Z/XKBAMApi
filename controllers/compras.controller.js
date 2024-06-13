@@ -46,7 +46,7 @@ self.create = async function (req, res) {
     }
 };
 
-}
+
 
 async function obtenerPreciosUnitarios(codigosArticulos) {
     const articulos = await articulo.findAll({

@@ -11,7 +11,7 @@ router.post('/', Authorize('Administrador'), validateItem, articulos.create);
 router.put('/:codigoArticulo', Authorize('Administrador'),articulos.update);
 
 // Eliminar un artículo por su código
-router.delete('/:codigoArticulo', articulos.delete);
+router.delete('/:codigoArticulo', Authorize('Administrador'),articulos.delete);
 
 // Obtener todos los artículos
 router.get('/',Authorize('Cliente,Administrador'), articulos.getAll);
