@@ -24,7 +24,7 @@ const validateAccount = [
             return true;
         }),
 
-    check('usuario')
+
     check('usuario')
         .notEmpty().withMessage('Campos vacíos')
         .isString().withMessage('Tipo de dato no aceptado')
@@ -39,13 +39,11 @@ const validateAccount = [
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty())
-        const errors = validationResult(req);
-        if (!errors.isEmpty())
             return res.status(400).json({ errors: errors.array() });
 
         next();
     }
 ];
-];
+
 
 module.exports = { validateAccount };
