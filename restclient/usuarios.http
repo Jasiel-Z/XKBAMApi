@@ -2,12 +2,12 @@
 Content-Type: application/json
 
 {
-  "usuario": "hjkhjkhjkhjkh",
-  "nombre": "hjkhjkhjkhjkhj",
+  "usuario": "CrisCris",
+  "nombre": "Cristopher",
   "apellidoPaterno": "Vazquez",
   "apellidoMaterno": "Villa",
   "genero": 1,
-  "contrasena": "C",
+  "contrasena": "CrisCris89",
   "correo": "cris990077@hotmail.com",
   "idRol": 1
 }
@@ -76,26 +76,6 @@ Content-Type: application/json
 }
 
 ###
- POST http://localhost:3000/api/usuarios
-Content-Type: application/json
-
-{
-    "usuario": {      
-        "usuario": "Jasiel45",
-        "nombre": "Jasiel Emir",
-        "apellidoPaterno": "Zavaleta",
-        "apellidoMaterno": "García",
-        "genero": 1
-        
-    },
-    "cuenta": {
-        "correo": "jasiel45@hotmail.com",
-        "contrasena": "Jasiel789",
-        "idRol": 1
-    }
-}
-
-###
 
 
  POST http://localhost:3000/api/usuarios
@@ -116,8 +96,6 @@ Content-Type: application/json
         "idRol": 2
     }
 }
-
-
 
 ###
  POST http://localhost:3000/api/usuarios
@@ -140,10 +118,25 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/usuarios/CrisCris
+GET http://localhost:3000/api/usuarios/prueba
 
 
 ###
+PUT http://localhost:3000/api/usuarios/diddyc
+Content-Type: application/json
 
- GET http://localhost:3000/api/usuarios/JasielMaster
- ##
+{
+    "usuario": {      
+        "usuario": "diddyprueba",
+        "nombre": "diddyduex",
+        "apellidoPaterno": "d",
+        "apellidoMaterno": "d",
+        "genero": 2
+        
+    },
+    "cuenta": {
+        "correo": "diddy@hotmail.com",
+        "contrasena": "a",
+        "idRol": 1
+    }
+}

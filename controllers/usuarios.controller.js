@@ -51,13 +51,50 @@ self.create = async function (req, res){
 }
 
 
-self.update = async function (req, res){
-    try{
-        
-    }catch(error){
-        return res.status(500).json({error: error.message});
-    }
+self.updateUserAndAccount = async function (req, res) {
+    const t = await sequelize.transaction();
+    try {
+        const { usuario: userName } = req.params;
+        const { usuario: userData, cuenta: accountData } = req.body;
+        const { nombre, apellidoPaterno, apellidoMaterno, genero } = userData;
+        const { contrasena, correo, idRol } = accountData;
 
+        const user = await usuario.findOne({ where: { usuario: userName }, transaction: t });
+        const account = await cuenta.findOne({ where: { usuario: userName }, transaction: t });
+
+        if (!user || !account) {
+            await t.rollback();
+            return res.status(404).json({ message: 'Usuario o cuenta no encontrados' });
+        }
+
+        await user.update({
+            nombre: nombre || user.nombre,
+            apellidoPaterno: apellidoPaterno || user.apellidoPaterno,
+            apellidoMaterno: apellidoMaterno || user.apellidoMaterno,
+            genero: genero || user.genero
+        }, { transaction: t });
+
+        let hashedPassword = account.contrasena;
+        if (contrasena) {
+            hashedPassword = await bcrypt.hash(contrasena, 10);
+        }
+
+        await account.update({
+            correo: correo || account.correo,
+            contrasena: hashedPassword,
+            idRol: idRol || account.idRol
+        }, { transaction: t });
+
+        await t.commit();
+        return res.status(200).json({
+            usuario: user,
+            cuenta: account
+        });
+
+    } catch (error) {
+        await t.rollback();
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 
@@ -67,7 +104,6 @@ self.getUserAndAccount = async function(req, res) {
 
         const user = await usuario.findOne({
             where: { usuario: userName },
-            //include: [{ model: cuenta, as: 'cuenta' }]
         });
 
         const account =  await cuenta.findOne({
