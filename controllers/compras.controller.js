@@ -1,9 +1,10 @@
-const {compra, articulocompra, articulo, sequelize} = require('../models');
-let self = {}
+const { compra, articulocompra } = require('../models');
+const sequelize = require('../models').sequelize; // Importar sequelize para usar transacciones
+let self = {};
 
-self.create = async function (req, res){
+self.create = async function (req, res) {
     const t = await sequelize.transaction();
-    try{
+    try {
         const { usuario, estado, articulos } = req.body;
 
         const codigosArticulos = articulos.map(articulo => articulo.codigoArticulo);
@@ -21,10 +22,10 @@ self.create = async function (req, res){
         console.log(montoFinal);
         const nuevaCompra = await compra.create({
             usuario,
-            estado: "En proceso",
+            estado,
             fechaCompra: new Date(),
             montoFinal
-        }, {transaction: t});
+        }, { transaction: t });
 
         const articulosCompra = articulos.map(articulo => ({
             cantidadArticulo: articulo.cantidadArticulo,
@@ -34,16 +35,16 @@ self.create = async function (req, res){
             idCompra: nuevaCompra.idCompra,
             idTalla: articulo.idTalla,
         }));
-        
-        await articulocompra.bulkCreate(articulosCompra, {transaction: t});
-        await t.commit();
-        res.status(201).json({ message: 'Compra realizada con éxito', 
-            compra: nuevaCompra, articulos: articulosCompra });
 
-    }catch(error){
+        await articulocompra.bulkCreate(articulosCompra, { transaction: t });
+        await t.commit();
+        res.status(201).json({ message: 'Compra realizada con éxito', compra: nuevaCompra, articulos: articulosCompra });
+
+    } catch (error) {
         await t.rollback();
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({ error: error.message });
     }
+};
 
 }
 

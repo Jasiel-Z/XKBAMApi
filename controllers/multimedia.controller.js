@@ -61,9 +61,9 @@ self.getAll = async function(req, res) {
 self.getByCodigoArticulo = async function(req, res) {
     try {
         const { codigoArticulo } = req.params;
-        const items = await multimedia.findAll({ where: { codigoArticulo } });
+        const item = await multimedia.findAll({ where: { codigoArticulo } });
 
-        return res.status(200).json(items);
+        return res.status(200).json(item);
     } catch (error) {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
