@@ -1022,3 +1022,8 @@
 {"level":"info","message":"GET /api/opiniones/XKART01","timestamp":"2024-06-12T18:54:59.382Z"}
 {"level":"info","message":"GET /api/carritos/carritousuario/CrisCris","timestamp":"2024-06-12T18:54:59.401Z"}
 {"level":"info","message":"GET /api/multimedia/codigo/XKART01","timestamp":"2024-06-12T18:54:59.406Z"}
+{"level":"info","message":"GET /","timestamp":"2024-06-13T01:26:38.032Z"}
+{"level":"info","message":"GET /favicon.ico","timestamp":"2024-06-13T01:26:38.632Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T02:45:26.709Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/articulos","user":"Usuario desconocido"},"timestamp":"2024-06-13T02:45:52.341Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Administrador","url":"/api/articulos","user":"cris990077@hotmail.com"},"timestamp":"2024-06-13T02:49:38.604Z"}

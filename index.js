@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv')
 const app = express()
-const requestLogger = require('./logs/requestlogger');
+const logRequest = require('./logs/requestlogger');
 
 dotenv.config();
 
@@ -10,16 +10,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 var corsOptions = {
-    origin:["http://localhost:3001", "http://localhost:8080"],
+    origin:["http://192.168.56.1:3000", "http://192.168.56.1:8080"],
     methods: "GET, PUT,POST,DELETE"
 }
 
 app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
-    requestLogger.info(`${req.method} ${req.url}`);
-    next();
-  });
+app.use(logRequest);
 
 app.use("/api/usuarios", require('./routes/usuarios.routes'))
 app.use("/api/cuentasbancarias", require('./routes/cuentasbancarias.routes'))

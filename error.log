@@ -13,3 +13,5 @@
 {"level":"error","message":"validationResult is not defined"}
 {"level":"error","message":"validationResult is not defined"}
 {"level":"error","message":"validationResult is not defined"}
+{"level":"error","message":"requestLogger.info is not a function"}
+{"level":"error","message":"requestLogger.info is not a function"}
