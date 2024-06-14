@@ -6,8 +6,14 @@ const logRequest = require('./logs/requestlogger');
 
 dotenv.config();
 
+//configuraciones de swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
+
+
 
 var corsOptions = {
     origin:["http://localhoss:3000", "http://localhost:8080"],
@@ -17,6 +23,8 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(logRequest);
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use("/api/usuarios", require('./routes/usuarios.routes'))
 app.use("/api/cuentasbancarias", require('./routes/cuentasbancarias.routes'))

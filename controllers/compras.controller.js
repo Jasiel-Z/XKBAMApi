@@ -6,20 +6,8 @@ self.create = async function (req, res) {
     const t = await sequelize.transaction();
     try {
         const { usuario, estado, articulos } = req.body;
-
-        const codigosArticulos = articulos.map(articulo => articulo.codigoArticulo);
-        const preciosUnitarios = await obtenerPreciosUnitarios(codigosArticulos);
-
-        for (let i = 0; i < articulos.length; i++) {
-            const articulo = articulos[i];
-            articulo.precioUnitario = preciosUnitarios[articulo.codigoArticulo];
-            articulo.precioFinal = articulo.precioUnitario * articulo.cantidadArticulo;
-        }
-
-        // Calcular el monto final de la compra
         const montoFinal = articulos.reduce((total, articulo) => total + articulo.precioFinal, 0);
 
-        console.log(montoFinal);
         const nuevaCompra = await compra.create({
             usuario,
             estado,

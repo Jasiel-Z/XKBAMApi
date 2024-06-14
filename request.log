@@ -884,3 +884,27 @@
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T21:37:49.678Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T21:38:18.371Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Cliente","url":"/api/autenticacion/tiempo","user":"jasielzav@gmail.com"},"timestamp":"2024-06-13T21:38:21.549Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:16:11.794Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:17:12.804Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:17:26.949Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:17:29.272Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:17:39.185Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","role":"Rol desconocido","url":"/api/autenticacion/tiempo","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:17:48.762Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-13T23:18:47.517Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-14T03:03:03.127Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-14T15:35:20.430Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","role":"Rol desconocido","url":"/api/autenticacion","user":"Usuario desconocido"},"timestamp":"2024-06-14T15:35:49.292Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/index.html","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.874Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui.css","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.968Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/index.css","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.972Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui-bundle.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.974Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui-standalone-preset.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.977Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-initializer.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:07.979Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/favicon-32x32.png","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:39:09.002Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/index.html","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.017Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui.css","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.065Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/index.css","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.067Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui-bundle.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.071Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-ui-standalone-preset.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.072Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/swagger-initializer.js","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.078Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","role":"Rol desconocido","url":"/swagger/favicon-32x32.png","user":"Usuario desconocido"},"timestamp":"2024-06-14T16:40:03.268Z"}
